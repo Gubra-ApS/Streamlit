@@ -35,7 +35,10 @@ y = st.sidebar.text_input('y (anterior-posterior):')
 z = st.sidebar.text_input('z (dorsal-ventral):')
 
 #
-st.header('Stereotxic coordinate [', x, ', ', y, ', ', z)
+st.header('Stereotxic coordinate')
+'x: ', x
+'y: ', y
+'z: ', z
 
 
 
