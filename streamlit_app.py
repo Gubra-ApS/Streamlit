@@ -21,13 +21,12 @@ def read_atlases(read):
 lsfm, mri, ccfv3 = read_atlases(1)
 
 
-st.sidebar.header('Select orientation')
+## Setup drop down selection menus
 df_options = pd.DataFrame({
     'atlas': ['LSFM', 'MRI', 'CCFv3'],
     'orientaion': ['Coronal', 'Sagital', 'Horizontal']
     })
 
-st.sidebar.header('Atlas brain regions')
 df_highligt = pd.DataFrame({
     'regions': ['hippo', 'cortex', 'ap', 'osv'],
     })
@@ -36,10 +35,12 @@ df_highligt = pd.DataFrame({
 #     'Navigate in:',
 #      df_options['atlas'])
 
+st.sidebar.header('Select orientation')
 option_orientation = st.sidebar.selectbox(
     'Slice orientation:',
      df_options['orientaion'])
 
+st.sidebar.header('Atlas brain regions')
 option_highligt = st.sidebar.selectbox(
     'Current highlight region:',
      df_highligt['regions'])
