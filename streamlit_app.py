@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time
+from PIL import Image
+
 
 df_options = pd.DataFrame({
     'atlas': ['LSFM', 'MRI', 'CCFv3'],
@@ -24,7 +26,7 @@ option_highligt = st.sidebar.selectbox(
     'Current highlight region:',
      df_highligt['regions'])
 
-st.button('Go to region centre')
+st.sidebar.button('Go to region centre')
 
 # 'You selected atlas: ', option_atlas
 # 'You selected orientation: ', option_orientation
@@ -39,6 +41,9 @@ st.header('Stereotxic coordinate')
 'x: ', x
 'y: ', y
 'z: ', z
+
+image = Image.open('sunrise.jpg')
+st.image(image)
 
 
 
