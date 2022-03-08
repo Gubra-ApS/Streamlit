@@ -7,17 +7,26 @@ df_options = pd.DataFrame({
     'orientaion': ['Coronal', 'Sagital', 'Horizontal']
     })
 
+df_highligt = pd.DataFrame({
+    'regions': ['hippo', 'cortex', 'ap', 'osv'],
+    })
+
 option_atlas = st.selectbox(
-    'Navigate in:',
+    'Slice orientation:',
      df_options['atlas'])
 
 option_orientation = st.selectbox(
     'Navigate in:',
      df_options['orientaion'])
 
+option_highligt = st.selectbox(
+    'Current highlight region:',
+     df_highligt['regions'])
+
 
 'You selected atlas: ', option_atlas
 'You selected orientation: ', option_orientation
+'You selected regions: ', option_orientation
 
 
 
