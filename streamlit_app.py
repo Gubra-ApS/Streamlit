@@ -57,11 +57,25 @@ st.header('Stereotxic coordinate [' + x + ', ' + y + ', ' + z + ']')
 
 col1, col2 = st.columns(2)
 with col1:
-    pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[1], value=int(mri.shape[1]/2), step=None)
-    st.image(mri[:,pos,:])
+    if option_orientation=='Coronal':
+        pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[1], value=int(mri.shape[1]/2), step=None)
+        st.image(mri[:,pos,:])
+    if option_orientation=='Sagital':
+        pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[2], value=int(mri.shape[2] / 2), step=None)
+        st.image(mri[:, pos, :])
+    if option_orientation=='Horizontal':
+        pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[0], value=int(mri.shape[0] / 2), step=None)
+        st.image(mri[:, pos, :])
 with col2:
-    st.image(lsfm[:,pos,:])
-    st.image(ccfv3[:,pos,:])
+    if option_orientation == 'Coronal':
+        st.image(lsfm[:,pos,:])
+        st.image(ccfv3[:,pos,:])
+    if option_orientation == 'Sagital':
+        st.image(lsfm[:, :, pos])
+        st.image(ccfv3[:, :, pos])
+    if option_orientation == 'Horizontal':
+        st.image(lsfm[pos, :, :])
+        st.image(ccfv3[pos, :, :])
 
 
 
