@@ -60,12 +60,14 @@ z = st.sidebar.text_input('z (dorsal-ventral):', '0')
 
 #
 st.header('Stereotxic coordinate [' + x + ', ' + y + ', ' + z + ']')
-st.write('hej')
-
 
 col1, col2 = st.columns(2)
 with col1:
     if option_orientation=='Coronal':
+        if st.button('Next'):
+            x = x+10
+        #st.sidebar.button('Go to region centre')
+
         image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
         st.image(image)
         st.image(mri[:,int(y),:])
