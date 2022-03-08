@@ -7,11 +7,14 @@ import SimpleITK as sitk
 @st.cache  # 👈 This function will be cached
 def read_atlases(read):
     # load atlas files only once
-    volume = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_temp.nii.gz'))
-    #volume = np.zeros((500,300,350),'uint8')
-    return volume
+    lsfm = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_temp.nii.gz'))
+    mri = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/MRI_space_oriented/mri_temp.nii.gz'))
+    ccfv3 = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/AIBS_CCFv3_space_oriented/ccfv3_temp.nii.gz'))
 
-atlas1 = read_atlases(1)
+    return lsfm, mri, ccfv3
+
+# read atlas volume (only at first app load)
+lsfm, mri, ccfv3 = read_atlases(1)
 
 df_options = pd.DataFrame({
     'atlas': ['LSFM', 'MRI', 'CCFv3'],
@@ -50,8 +53,8 @@ st.header('Stereotxic coordinate')
 'y: ', y
 'z: ', z
 
-pos = st.slider('Atlas positions', min_value=0, max_value=atlas1.shape[0], value=int(atlas1.shape[0]/2), step=None)
-st.image(atlas1[pos])
+pos = st.slider('Atlas positions', min_value=0, max_value=lsfm.shape[0], value=int(lsfm.shape[0]/2), step=None)
+st.image(lsfm[pos])
 
 
 
