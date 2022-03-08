@@ -2,11 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-options = np.array('Coronal', 'Sagital', 'Horizontal')
+df_options = pd.DataFrame({
+    'first column': ['Coronal', 'Sagital', 'Horizontal']
+    })
 
 option = st.selectbox(
     'Navigate in:',
-     options)
+     df_options)
 
 'You selected: ', option
 
