@@ -3,14 +3,21 @@ import pandas as pd
 import numpy as np
 
 df_options = pd.DataFrame({
-    'first column': ['Coronal', 'Sagital', 'Horizontal']
+    'atlas': ['LSFM', 'MRI', 'CCFv3'],
+    'orientaion': ['Coronal', 'Sagital', 'Horizontal']
     })
 
-option = st.selectbox(
+option_atlas = st.selectbox(
     'Navigate in:',
-     df_options)
+     df_options['atlas'])
 
-'You selected: ', option
+option_orientation = st.selectbox(
+    'Navigate in:',
+     df_options['orientaion'])
+
+
+'You selected atlas: ', option_atlas
+'You selected orientation: ', option_orientation
 
 
 
