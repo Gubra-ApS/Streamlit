@@ -65,7 +65,7 @@ col1, col2 = st.columns(2)
 with col1:
     if option_orientation=='Coronal':
         if st.button('Next'):
-            x = str(int(x)+10)
+            y = str(int(y)+10)
         #st.sidebar.button('Go to region centre')
 
         image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
