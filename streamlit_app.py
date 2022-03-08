@@ -27,9 +27,11 @@ df_options = pd.DataFrame({
     'orientaion': ['Coronal', 'Sagital', 'Horizontal']
     })
 
-df_highligt = pd.DataFrame({
-    'regions': ['hippo', 'cortex', 'ap', 'osv'],
-    })
+# df_highligt = pd.DataFrame({
+#     'regions': ['hippo', 'cortex', 'ap', 'osv'],
+#     })
+
+df_highligt = pd.read_csv('atlas_regions_available.csv')
 
 # option_atlas = st.sidebar.selectbox(
 #     'Navigate in:',
@@ -43,7 +45,7 @@ option_orientation = st.sidebar.selectbox(
 st.sidebar.header('Atlas brain regions')
 option_highligt = st.sidebar.selectbox(
     'Current highlight region:',
-     df_highligt['regions'])
+     df_highligt['acronym'])
 
 st.sidebar.button('Go to region centre')
 
