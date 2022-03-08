@@ -70,6 +70,8 @@ with col1:
     if option_orientation=='Coronal':
         if st.button('Next'):
             st.session_state.y_val = str(int(st.session_state.y_val)+10)
+        if st.button('Prev'):
+            st.session_state.y_val = str(int(st.session_state.y_val)-10)
         #st.sidebar.button('Go to region centre')
 
         image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
