@@ -23,7 +23,6 @@ lsfm, mri, ccfv3 = read_atlases(1)
 
 ## Setup drop down selection menus
 df_options = pd.DataFrame({
-    'atlas': ['LSFM', 'MRI', 'CCFv3'],
     'orientaion': ['Coronal', 'Sagital']
     })
 
