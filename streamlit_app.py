@@ -61,7 +61,8 @@ st.sidebar.header('Coordinate finder')
 x = st.sidebar.text_input('x (medial-laterally):', '0')
 y = st.sidebar.text_input('y (anterior-posterior):', st.session_state.y_val)
 z = st.sidebar.text_input('z (dorsal-ventral):', '0')
-
+if st.button('Update'):
+    st.session_state.y_val = y
 #
 st.header('Stereotxic coordinate [' + x + ', ' + y + ', ' + z + ']')
 
