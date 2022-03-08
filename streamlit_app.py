@@ -53,7 +53,7 @@ st.button('Go to region centre')
 # return the output previously stored in the cache.
 
 
-x = st.text_input('x (medial-laterally):')
-y = st.text_input('y (anterior-posterior):')
-z = st.text_input('z (dorsal-ventral):')
+x = st.sidebar.text_input('x (medial-laterally):')
+y = st.sidebar.text_input('y (anterior-posterior):')
+z = st.sidebar.text_input('z (dorsal-ventral):')
 
