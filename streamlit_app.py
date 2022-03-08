@@ -24,34 +24,36 @@ option_highligt = st.sidebar.selectbox(
     'Current highlight region:',
      df_highligt['regions'])
 
+st.button('Go to region centre')
+
 
 'You selected atlas: ', option_atlas
 'You selected orientation: ', option_orientation
 'You selected regions: ', option_orientation
 
 
-'Starting a long computation...'
-# Add a placeholder
-latest_iteration = st.empty()
-bar = st.progress(0)
-
-for i in range(100):
-  # Update the progress bar with each iteration.
-  latest_iteration.text(f'Iteration {i+1}')
-  bar.progress(i + 1)
-  time.sleep(0.1)
-
-'...and now we\'re done!'
-
-
+# 'Starting a long computation...'
+# # Add a placeholder
+# latest_iteration = st.empty()
+# bar = st.progress(0)
+#
+# for i in range(100):
+#   # Update the progress bar with each iteration.
+#   latest_iteration.text(f'Iteration {i+1}')
+#   bar.progress(i + 1)
+#   time.sleep(0.1)
+#
+# '...and now we\'re done!'
 
 
-x = st.slider('x')  # 👈 this is a widget
-st.write(x, 'squared is', x * x)
+# cache
+# If this is the first time Streamlit has seen these four components with these exact values and in this exact
+# combination and order, it runs the function and stores the result in a local cache. Then, next time the cached function is called,
+# if none of these components changed, Streamlit will skip executing the function altogether and, instead,
+# return the output previously stored in the cache.
 
-# Create widget which can be accesed by a key
-st.text_input("Enter your name", key="name")
 
-st.write(st.session_state.name)
-
+x = st.text_input('x (medial-laterally):')
+y = st.text_input('y (anterior-posterior):')
+z = st.text_input('z (dorsal-ventral):')
 
