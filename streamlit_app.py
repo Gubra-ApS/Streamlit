@@ -8,12 +8,12 @@ import SimpleITK as sitk
 def read_atlases(read):
     # load atlas files only once
     lsfm = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_temp.nii.gz'))
-    lsfm = np.flip(lsfm, axis=2)
+    lsfm = np.flip(lsfm, axis=0)
     mri = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/MRI_space_oriented/mri_temp.nii.gz'))
-    mri = np.flip(mri, axis=2)
+    mri = np.flip(mri, axis=0)
     ccfv3 = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/AIBS_CCFv3_space_oriented/ccfv3_temp.nii.gz'))
     ccfv3[ccfv3>255] = 255
-    ccfv3 = np.flip(ccfv3, axis=2)
+    ccfv3 = np.flip(ccfv3, axis=0)
 
     return lsfm, mri, ccfv3
 
