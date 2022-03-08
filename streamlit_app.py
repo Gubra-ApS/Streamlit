@@ -36,6 +36,7 @@ df_options = pd.DataFrame({
 #     })
 
 df_highligt = pd.read_csv('atlas_regions_available.csv')
+st.write(df_highligt)
 
 # option_atlas = st.sidebar.selectbox(
 #     'Navigate in:',
