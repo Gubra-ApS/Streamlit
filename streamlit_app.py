@@ -58,6 +58,7 @@ z = st.sidebar.text_input('z (dorsal-ventral):', '0')
 
 #
 st.header('Stereotxic coordinate [' + x + ', ' + y + ', ' + z + ']')
+st.write('hej')
 
 
 col1, col2 = st.columns(2)
