@@ -55,7 +55,7 @@ st.sidebar.button('Go to region centre')
 
 st.sidebar.header('Coordinate finder')
 x = st.sidebar.text_input('x (medial-laterally):', '0')
-y = st.sidebar.text_input('y (anterior-posterior):', '0')
+y = st.sidebar.text_input('y (anterior-posterior):', '300')
 z = st.sidebar.text_input('z (dorsal-ventral):', '0')
 
 #
@@ -66,7 +66,7 @@ st.write('hej')
 col1, col2 = st.columns(2)
 with col1:
     if option_orientation=='Coronal':
-        pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[1], value=int(mri.shape[1]/2), step=None)
+        pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[1], value=int(y), step=None)
         image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
         st.image(image)
         st.image(mri[:,pos,:])
