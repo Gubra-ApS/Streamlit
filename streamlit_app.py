@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import time
 import SimpleITK as sitk
+from PIL import Image
 
 @st.cache  # 👈 This function will be cached
 def read_atlases(read):
@@ -66,10 +67,13 @@ col1, col2 = st.columns(2)
 with col1:
     if option_orientation=='Coronal':
         pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[1], value=int(mri.shape[1]/2), step=None)
-        st.image('horizontal_white_neuropedia/'+df_highligt+'.tif')
+        image = Image.open('horizontal_white_neuropedia/'+df_highligt+'.tif')
+        st.image(image)
         st.image(mri[:,pos,:])
     if option_orientation=='Sagital':
         pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[2], value=int(mri.shape[2] / 2), step=None)
+        image = Image.open('horizontal_white_neuropedia/'+df_highligt+'.tif')
+        st.image(image)
         st.image('horizontal_white_neuropedia/' + df_highligt + '.tif')
         st.image(mri[:, :, pos])
 with col2:
