@@ -54,10 +54,13 @@ st.header('Stereotxic coordinate')
 'y: ', y
 'z: ', z
 
-pos = st.slider('Atlas positions', min_value=0, max_value=lsfm.shape[0], value=int(lsfm.shape[0]/2), step=None)
-st.image(lsfm[pos])
-st.image(mri[pos])
-st.image(ccfv3[pos])
+col1, col2 = st.columns(2)
+with col1:
+    pos = st.slider('Atlas positions', min_value=0, max_value=lsfm.shape[0], value=int(lsfm.shape[0]/2), step=None)
+    st.image(lsfm[pos])
+with col2:
+    st.image(mri[pos])
+    st.image(ccfv3[pos])
 
 
 
