@@ -51,7 +51,7 @@ st.header('Stereotxic coordinate')
 'z: ', z
 
 
-st.image(atlas1[10])
+st.image(atlas1[200])
 
 
 
