@@ -2,8 +2,16 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time
-from PIL import Image
+import SimpleITK as sitk
 
+@st.cache  # 👈 This function will be cached
+def read_atlases(read):
+    # load atlas files only once
+    # volume = sitk.GetArrayFromImage(sitk.ReadImage(file_name))
+    volume = np.zeros((500,300,350),'uint8')
+    return volume
+
+atlas1 = read_atlases(1)
 
 df_options = pd.DataFrame({
     'atlas': ['LSFM', 'MRI', 'CCFv3'],
@@ -42,8 +50,8 @@ st.header('Stereotxic coordinate')
 'y: ', y
 'z: ', z
 
-image = Image.open('sunrise.jpg')
-st.image(image)
+
+st.image(atlas1[10])
 
 
 
