@@ -35,8 +35,7 @@ df_options = pd.DataFrame({
 #     'regions': ['hippo', 'cortex', 'ap', 'osv'],
 #     })
 
-df_highligt = pd.read_csv('atlas_regions_available.csv')
-st.write(df_highligt)
+df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 
 # option_atlas = st.sidebar.selectbox(
 #     'Navigate in:',
@@ -54,7 +53,7 @@ option_highligt = st.sidebar.selectbox(
 
 if st.sidebar.button('Go to region centre'):
     temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
-    st.write(temp)
+    st.write(temp['slice_number'])
 
 # 'You selected atlas: ', option_atlas
 # 'You selected orientation: ', option_orientation
