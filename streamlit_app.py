@@ -62,10 +62,10 @@ with col1:
         st.image(mri[:,pos,:])
     if option_orientation=='Sagital':
         pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[2], value=int(mri.shape[2] / 2), step=None)
-        st.image(mri[:, pos, :])
+        st.image(mri[:, :, pos])
     if option_orientation=='Horizontal':
         pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[0], value=int(mri.shape[0] / 2), step=None)
-        st.image(mri[:, pos, :])
+        st.image(mri[pos, :, :])
 with col2:
     if option_orientation == 'Coronal':
         st.image(lsfm[:,pos,:])
