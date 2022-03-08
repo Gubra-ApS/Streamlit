@@ -11,15 +11,15 @@ df_highligt = pd.DataFrame({
     'regions': ['hippo', 'cortex', 'ap', 'osv'],
     })
 
-option_atlas = st.selectbox(
+option_atlas = st.sidebar.selectbox(
     'Slice orientation:',
      df_options['atlas'])
 
-option_orientation = st.selectbox(
+option_orientation = st.sidebar.selectbox(
     'Navigate in:',
      df_options['orientaion'])
 
-option_highligt = st.selectbox(
+option_highligt = st.sidebar.selectbox(
     'Current highlight region:',
      df_highligt['regions'])
 
