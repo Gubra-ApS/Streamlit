@@ -7,8 +7,8 @@ import SimpleITK as sitk
 @st.cache  # 👈 This function will be cached
 def read_atlases(read):
     # load atlas files only once
-    # volume = sitk.GetArrayFromImage(sitk.ReadImage(file_name))
-    volume = np.zeros((500,300,350),'uint8')
+    volume = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_temp.nii.gz'))
+    #volume = np.zeros((500,300,350),'uint8')
     return volume
 
 atlas1 = read_atlases(1)
