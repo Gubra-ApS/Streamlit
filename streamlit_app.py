@@ -53,8 +53,7 @@ option_highligt = st.sidebar.selectbox(
 
 if st.sidebar.button('Go to region centre'):
     temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
-    temp_np = temp.tonumpy()
-    st.write(temp_np)
+    st.write(temp['slice_number'])
 
 # 'You selected atlas: ', option_atlas
 # 'You selected orientation: ', option_orientation
