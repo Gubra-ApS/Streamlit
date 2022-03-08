@@ -19,6 +19,6 @@ st.write(x, 'squared is', x * x)
 # Create widget which can be accesed by a key
 st.text_input("Enter your name", key="name")
 
-st.session_state.name
+st.write(st.session_state.name)
 
 
