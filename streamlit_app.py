@@ -51,17 +51,19 @@ option_highligt = st.sidebar.selectbox(
     'Current highlight region:',
      df_highligt['acronym'])
 
-st.sidebar.button('Go to region centre')
+if st.sidebar.button('Go to region centre'):
+    temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
+    st.write(temp)
 
 # 'You selected atlas: ', option_atlas
 # 'You selected orientation: ', option_orientation
 # 'You selected regions: ', option_orientation
 
-st.sidebar.header('Coordinate finder')
+st.sidebar.header('Coordinate picker')
 x = st.sidebar.text_input('x (medial-laterally):', '0')
 y = st.sidebar.text_input('y (anterior-posterior):', '300')
 z = st.sidebar.text_input('z (dorsal-ventral):', '0')
-if st.sidebar.button('Update'):
+if st.sidebar.button('Got o coordinate'):
     st.session_state.y_val = y
 #
 st.header('Stereotxic coordinate [' + x + ', ' + st.session_state.y_val + ', ' + z + ']')
