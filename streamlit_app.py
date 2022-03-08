@@ -66,22 +66,20 @@ st.write('hej')
 col1, col2 = st.columns(2)
 with col1:
     if option_orientation=='Coronal':
-        pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[1], value=int(y), step=None)
         image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
         st.image(image)
         st.image(mri[:,int(y),:])
     if option_orientation=='Sagital':
-        pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[2], value=int(mri.shape[2] / 2), step=None)
         image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
         st.image(image)
-        st.image(mri[:, :, pos])
+        st.image(mri[:, :, int(x)])
 with col2:
     if option_orientation == 'Coronal':
-        st.image(lsfm[:,pos,:])
-        st.image(ccfv3[:,pos,:])
+        st.image(lsfm[:,int(y),:])
+        st.image(ccfv3[:,int(y),:])
     if option_orientation == 'Sagital':
-        st.image(lsfm[:, :, pos])
-        st.image(ccfv3[:, :, pos])
+        st.image(lsfm[:, :, int(x)])
+        st.image(ccfv3[:, :, int(x)])
 
 
 
