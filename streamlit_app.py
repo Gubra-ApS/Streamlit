@@ -50,8 +50,8 @@ st.header('Stereotxic coordinate')
 'y: ', y
 'z: ', z
 
-
-st.image(atlas1[200])
+pos = st.slider('Atlas positions', min_value=0, max_value=atlas1.shape[0], value=int(atlas1.shape[0]/2), step=None)
+st.image(atlas1[pos])
 
 
 
