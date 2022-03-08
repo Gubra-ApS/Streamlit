@@ -53,10 +53,6 @@ st.sidebar.button('Go to region centre')
 # 'You selected orientation: ', option_orientation
 # 'You selected regions: ', option_orientation
 
-st.sidebar.header('Coordinate finder')
-x = st.sidebar.text_input('x (medial-laterally):', '0')
-y = st.sidebar.text_input('y (anterior-posterior):', '300')
-z = st.sidebar.text_input('z (dorsal-ventral):', '0')
 
 #
 st.header('Stereotxic coordinate [' + x + ', ' + y + ', ' + z + ']')
@@ -85,6 +81,10 @@ with col2:
 
 
 
+st.sidebar.header('Coordinate finder')
+x = st.sidebar.text_input('x (medial-laterally):', '0')
+y = st.sidebar.text_input('y (anterior-posterior):', '300')
+z = st.sidebar.text_input('z (dorsal-ventral):', '0')
 
 
 
