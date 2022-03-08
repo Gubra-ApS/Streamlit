@@ -29,12 +29,12 @@ df_highligt = pd.DataFrame({
     'regions': ['hippo', 'cortex', 'ap', 'osv'],
     })
 
-option_atlas = st.sidebar.selectbox(
-    'Slice orientation:',
-     df_options['atlas'])
+# option_atlas = st.sidebar.selectbox(
+#     'Navigate in:',
+#      df_options['atlas'])
 
 option_orientation = st.sidebar.selectbox(
-    'Navigate in:',
+    'Slice orientation:',
      df_options['orientaion'])
 
 option_highligt = st.sidebar.selectbox(
