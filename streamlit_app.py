@@ -2,9 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+options = np.array('Coronal', 'Sagital', 'Horizontal')
+
 option = st.selectbox(
     'Navigate in:',
-     'Coronal')
+     options)
 
 'You selected: ', option
 
