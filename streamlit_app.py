@@ -26,10 +26,20 @@ option_highligt = st.sidebar.selectbox(
 
 st.button('Go to region centre')
 
+# 'You selected atlas: ', option_atlas
+# 'You selected orientation: ', option_orientation
+# 'You selected regions: ', option_orientation
 
-'You selected atlas: ', option_atlas
-'You selected orientation: ', option_orientation
-'You selected regions: ', option_orientation
+x = st.sidebar.text_input('x (medial-laterally):')
+y = st.sidebar.text_input('y (anterior-posterior):')
+z = st.sidebar.text_input('z (dorsal-ventral):')
+
+#
+st.header('Stereotxic coordinate [', x, ', ', y, ', ', z)
+
+
+
+
 
 
 # 'Starting a long computation...'
@@ -45,15 +55,10 @@ st.button('Go to region centre')
 #
 # '...and now we\'re done!'
 
-
 # cache
 # If this is the first time Streamlit has seen these four components with these exact values and in this exact
 # combination and order, it runs the function and stores the result in a local cache. Then, next time the cached function is called,
 # if none of these components changed, Streamlit will skip executing the function altogether and, instead,
 # return the output previously stored in the cache.
 
-
-x = st.sidebar.text_input('x (medial-laterally):')
-y = st.sidebar.text_input('y (anterior-posterior):')
-z = st.sidebar.text_input('z (dorsal-ventral):')
 
