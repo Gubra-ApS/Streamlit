@@ -47,15 +47,13 @@ st.sidebar.button('Go to region centre')
 # 'You selected orientation: ', option_orientation
 # 'You selected regions: ', option_orientation
 
-x = st.sidebar.text_input('x (medial-laterally):')
-y = st.sidebar.text_input('y (anterior-posterior):')
-z = st.sidebar.text_input('z (dorsal-ventral):')
+x = st.sidebar.text_input('x (medial-laterally):', '0')
+y = st.sidebar.text_input('y (anterior-posterior):', '0')
+z = st.sidebar.text_input('z (dorsal-ventral):', '0')
 
 #
-st.header('Stereotxic coordinate')
-'x: ', x
-'y: ', y
-'z: ', z
+st.header('Stereotxic coordinate [' + x + ', ' + y + ', ' + z + ']')
+
 
 col1, col2 = st.columns(2)
 with col1:
