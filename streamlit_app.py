@@ -24,7 +24,7 @@ lsfm, mri, ccfv3 = read_atlases(1)
 ## Setup drop down selection menus
 df_options = pd.DataFrame({
     'atlas': ['LSFM', 'MRI', 'CCFv3'],
-    'orientaion': ['Coronal', 'Sagital', 'Horizontal']
+    'orientaion': ['Coronal', 'Sagital']
     })
 
 # df_highligt = pd.DataFrame({
@@ -67,13 +67,12 @@ col1, col2 = st.columns(2)
 with col1:
     if option_orientation=='Coronal':
         pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[1], value=int(mri.shape[1]/2), step=None)
+        st.image('horizontal_white_neuropedia/'+df_highligt+'.tif')
         st.image(mri[:,pos,:])
     if option_orientation=='Sagital':
         pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[2], value=int(mri.shape[2] / 2), step=None)
+        st.image('horizontal_white_neuropedia/' + df_highligt + '.tif')
         st.image(mri[:, :, pos])
-    if option_orientation=='Horizontal':
-        pos = st.slider('Atlas positions', min_value=0, max_value=mri.shape[0], value=int(mri.shape[0] / 2), step=None)
-        st.image(mri[pos, :, :])
 with col2:
     if option_orientation == 'Coronal':
         st.image(lsfm[:,pos,:])
@@ -81,9 +80,6 @@ with col2:
     if option_orientation == 'Sagital':
         st.image(lsfm[:, :, pos])
         st.image(ccfv3[:, :, pos])
-    if option_orientation == 'Horizontal':
-        st.image(lsfm[pos, :, :])
-        st.image(ccfv3[pos, :, :])
 
 
 
