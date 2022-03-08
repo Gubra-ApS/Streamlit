@@ -59,7 +59,7 @@ st.sidebar.button('Go to region centre')
 
 st.sidebar.header('Coordinate finder')
 x = st.sidebar.text_input('x (medial-laterally):', '0')
-y = st.sidebar.text_input('y (anterior-posterior):', st.session_state.x_val)
+y = st.sidebar.text_input('y (anterior-posterior):', st.session_state.y_val)
 z = st.sidebar.text_input('z (dorsal-ventral):', '0')
 
 #
