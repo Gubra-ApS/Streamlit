@@ -20,11 +20,14 @@ def read_atlases(read):
 # read atlas volume (only at first app load)
 lsfm, mri, ccfv3 = read_atlases(1)
 
+
+st.sidebar.header('Select orientation')
 df_options = pd.DataFrame({
     'atlas': ['LSFM', 'MRI', 'CCFv3'],
     'orientaion': ['Coronal', 'Sagital', 'Horizontal']
     })
 
+st.sidebar.header('Atlas brain regions')
 df_highligt = pd.DataFrame({
     'regions': ['hippo', 'cortex', 'ap', 'osv'],
     })
@@ -47,6 +50,7 @@ st.sidebar.button('Go to region centre')
 # 'You selected orientation: ', option_orientation
 # 'You selected regions: ', option_orientation
 
+st.sidebar.header('Coordinate finder')
 x = st.sidebar.text_input('x (medial-laterally):', '0')
 y = st.sidebar.text_input('y (anterior-posterior):', '0')
 z = st.sidebar.text_input('z (dorsal-ventral):', '0')
