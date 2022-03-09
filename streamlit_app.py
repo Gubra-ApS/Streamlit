@@ -136,16 +136,17 @@ image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
 pix = np.array(image)
 
 im_mip = im_plot_mip(pix, 100)
-canvas_mip = st_canvas(
-    stroke_width=0,
-    stroke_color="black",
-    background_image=im_mip,
-    height=297,
-    width=214,
-    drawing_mode="circle",
-    display_toolbar=False,
-    key="mip"
-)
+st.image(im_mip)
+#canvas_mip = st_canvas(
+#    stroke_width=0,
+#    stroke_color="black",
+#    background_image=im_mip,
+#    height=297,
+#    width=214,
+#    drawing_mode="circle",
+#    display_toolbar=False,
+#    key="mip"
+#)
 
 # Create a canvas component
 canvas_result = st_canvas(
