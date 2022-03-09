@@ -128,9 +128,8 @@ if canvas_result.json_data is not None:
 
         st.subheader("Click coordinate")
         temp_df = df.iloc[-1]
-        temp_df
 
-        for _, row in df.iterrows():
+        for _, row in temp_df.iterrows():
             st.markdown(
                 f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
             )
