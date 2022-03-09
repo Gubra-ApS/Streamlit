@@ -131,6 +131,8 @@ fig.tight_layout()
 pil_im = fig2img(fig)
 st.sidebar.image(pil_im)
 
+y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
+
 
 
 # if st.sidebar.button('Go to region centre'):
