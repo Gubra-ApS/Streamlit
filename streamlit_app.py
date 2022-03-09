@@ -39,6 +39,10 @@ def im_plot(im):
 # create session variables
 if 'y_val' not in st.session_state:
     st.session_state['y_val'] = '280'
+if 'x_val' not in st.session_state:
+    st.session_state['x_val'] = '150'
+if 'z_val' not in st.session_state:
+    st.session_state['z_val'] = '180'
 
 @st.cache  # 👈 This function will be cached
 def read_atlases(read):
@@ -96,11 +100,10 @@ y = st.sidebar.text_input('y (anterior-posterior):', '300')
 z = st.sidebar.text_input('z (dorsal-ventral):', '0')
 if st.sidebar.button('Got o coordinate'):
     st.session_state.y_val = y
+    st.session_state.x_val = x
+    st.session_state.z_val = z
 #
-st.header('Stereotxic coordinate [' + x + ', ' + st.session_state.y_val + ', ' + z + ']')
-
-
-
+st.header('Stereotxic coordinate [' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 
 
 # Specify canvas parameters in application
@@ -129,7 +132,6 @@ if canvas_result.json_data is not None:
         )
 
         st.subheader("Click coordinate")
-
         for index, row in df.iterrows():
             if index+1==len(df):
                 st.markdown(
@@ -137,7 +139,8 @@ if canvas_result.json_data is not None:
                     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                 )
 
-        st.session_state.y_val = str(int(st.session_state.y_val) + 10)
+                st.session_state.x_val = str(row["center_x"])
+                st.session_state.z_val = str(row["center_z"])
 
 #
 # # show an image
