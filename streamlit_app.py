@@ -173,7 +173,7 @@ with col2:
                     st.session_state.x_val = str(row["center_x"])
                     st.session_state.z_val = str(row["center_y"])
     # ano
-    im_click_pre = lsfm_ano[:, int(st.session_state.y_val)+30, :]
+    im_click_pre = np.copy(lsfm_ano[:, int(st.session_state.y_val)+30, :])
     im_click_pre[im_click_pre>255] = 255
     im_click_pre = downscale_local_mean(im_click_pre,(2,2))
     im_click = im_plot(im_click_pre)
