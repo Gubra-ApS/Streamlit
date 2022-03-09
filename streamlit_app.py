@@ -42,7 +42,7 @@ def im_plot_mip(im, line_coord):
     fig, ax = plt.subplots()
     ax.imshow(im)
 
-    rect = patches.Rectangle((line_coord, 0), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
+    rect = patches.Rectangle((0, line_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
     ax.add_patch(rect)
 
     ax.axis('off')
@@ -135,7 +135,7 @@ if st.button('Prev'):
 image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
 pix = np.array(image)
 
-im_mip = im_plot_mip(pix, 100)
+im_mip = im_plot_mip(pix, st.session_state.y_val)
 st.image(im_mip)
 #canvas_mip = st_canvas(
 #    stroke_width=0,
