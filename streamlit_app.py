@@ -6,6 +6,16 @@ import SimpleITK as sitk
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 import json
+import matplotlib.pyplot as plt
+
+
+# custom functions
+def im_plot(im):
+    fig = plt.figure(figsize=(10, 4))
+    plt.imshow(im)
+
+    st.balloons()
+    st.pyplot(fig)
 
 # create session variables
 if 'y_val' not in st.session_state:
@@ -103,6 +113,10 @@ if canvas_result.json_data is not None:
             st.markdown(
                 f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
             )
+
+
+# show an image
+im_plot(mri[:,int(st.session_state.y_val),:])
 
 
 
