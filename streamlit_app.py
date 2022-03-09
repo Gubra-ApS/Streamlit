@@ -144,7 +144,7 @@ if canvas_result.json_data is not None:
                     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                 )
 
-        st.session_state.y_val = st.session_state.y_val + 10
+        st.session_state.y_val = str(int(st.session_state.y_val) + 10)
 
 #
 # # show an image
