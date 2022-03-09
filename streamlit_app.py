@@ -121,10 +121,17 @@ canvas_result = st_canvas(
 if canvas_result.json_data is not None:
     df = pd.json_normalize(canvas_result.json_data["objects"])
     if len(df) != 0:
-        df["center_x"] = df["left"] + df["radius"] * np.cos(
+        # df["center_x"] = df["left"] + df["radius"] * np.cos(
+        #     df["angle"] * np.pi / 180
+        # )
+        # df["center_y"] = df["top"] + df["radius"] * np.sin(
+        #     df["angle"] * np.pi / 180
+        # )
+
+        df["center_x"] = df["left"] * np.cos(
             df["angle"] * np.pi / 180
         )
-        df["center_y"] = df["top"] + df["radius"] * np.sin(
+        df["center_y"] = df["top"] * np.sin(
             df["angle"] * np.pi / 180
         )
 
@@ -133,6 +140,7 @@ if canvas_result.json_data is not None:
         for index, row in df.iterrows():
             if index+1==len(df):
                 st.markdown(
+                    #f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                 )
 
