@@ -126,9 +126,9 @@ if st.sidebar.button('Got o coordinate'):
 st.header('Stereotxic coordinate [' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 
 if st.button('Next'):
-    st.session_state.y_val = str(int(st.session_state.x_val) + 10)
+    st.session_state.x_val = str(int(st.session_state.x_val) + 10)
 if st.button('Prev'):
-    st.session_state.y_val = str(int(st.session_state.x_val) - 10)
+    st.session_state.x_val = str(int(st.session_state.x_val) - 10)
 
 
 # Create a canvas component
@@ -145,7 +145,6 @@ canvas_mip = st_canvas(
     display_toolbar=False,
     key="mip"
 )
-st.write(st.session_state.x_val)
 
 # Create a canvas component
 canvas_result = st_canvas(
