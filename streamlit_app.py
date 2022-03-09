@@ -134,7 +134,7 @@ y_slider = st.sidebar.slider('Anterior-posterios', min_value=0, max_value=199, v
 
 
 # Create a canvas component
-canvas_result = st.sidebar.st_canvas(
+canvas_result = st_canvas(
     stroke_width=0,
     stroke_color="black",
     background_image=im_plot(lsfm[:, int(st.session_state.y_val)+30, :]),
