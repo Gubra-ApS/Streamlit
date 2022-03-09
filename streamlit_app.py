@@ -128,7 +128,7 @@ if canvas_result.json_data is not None:
 
         st.subheader("Click coordinate")
         temp_df = df.iloc[-1]
-        st.write(temp_df)
+        temp_df
 
         for _, row in df.iterrows():
             st.markdown(
