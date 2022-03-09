@@ -123,7 +123,7 @@ pix = np.array(image)
 st.write(int(st.session_state.y_val))
 fig, ax = plt.subplots()
 ax.imshow(pix)
-y_coord = int(int(st.session_state.y_val)/512*199)+20
+y_coord = int(int(st.session_state.y_val)/512*199)+15
 rect = patches.Rectangle((0, y_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
 ax.add_patch(rect)
 ax.axis('off')
