@@ -121,17 +121,10 @@ canvas_result = st_canvas(
 if canvas_result.json_data is not None:
     df = pd.json_normalize(canvas_result.json_data["objects"])
     if len(df) != 0:
-        # df["center_x"] = df["left"] + df["radius"] * np.cos(
-        #     df["angle"] * np.pi / 180
-        # )
-        # df["center_y"] = df["top"] + df["radius"] * np.sin(
-        #     df["angle"] * np.pi / 180
-        # )
-
-        df["center_x"] = df["left"] * np.cos(
+        df["center_x"] = df["left"] + df["radius"] * np.cos(
             df["angle"] * np.pi / 180
         )
-        df["center_y"] = df["top"] * np.sin(
+        df["center_y"] = df["top"] + df["radius"] * np.sin(
             df["angle"] * np.pi / 180
         )
 
@@ -145,7 +138,6 @@ if canvas_result.json_data is not None:
                 )
 
         st.session_state.y_val = str(int(st.session_state.y_val) + 10)
-        canvas_result.json_data = None
 
 #
 # # show an image
