@@ -135,8 +135,8 @@ with col1:
     image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
     pix = np.array(image)
     y_coord = int(int(float(st.session_state.y_val)) / 512 * 199) + 20
+    st.write(y_coord)
     im_mip = im_plot_mip(pix, y_coord)
-    st.image(im_mip)
 
     canvas_result_mip = st_canvas(
         stroke_width=0,
@@ -165,7 +165,7 @@ with col1:
                     #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
-                    st.session_state.y_val = str(row["center_y"])
+                    st.session_state.y_val = str(int(row["center_y"] / 199 * 512) + 25)
 
 
 
