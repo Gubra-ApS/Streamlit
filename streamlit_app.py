@@ -137,7 +137,7 @@ y_slider = st.sidebar.slider('Anterior-posterios', min_value=0, max_value=199, v
 canvas_result = st_canvas(
     stroke_width=0,
     stroke_color="black",
-    background_image=im_plot(lsfm[:, int(st.session_state.y_val), :]),
+    background_image=im_plot(lsfm[:, int(st.session_state.y_val)+30, :]),
     height=297,
     width=455,
     drawing_mode="circle",
