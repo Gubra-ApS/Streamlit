@@ -38,14 +38,15 @@ def im_plot(im):
 def im_plot_mip(im, line_coord):
     px = 1 / plt.rcParams['figure.dpi']
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
-    fig = plt.figure(figsize=(13.9, 10))
-    plt.imshow(im)
+    #fig = plt.figure(figsize=(13.9, 10))
+    fig, ax = plt.subplots()
+    ax.imshow(im)
 
     rect = patches.Rectangle((100, 20), 100, 30, linewidth=1, edgecolor='r', facecolor='none')
-    plt.add_patch(rect)
+    ax.add_patch(rect)
 
-    plt.axis('off')
-    plt.tight_layout()
+    ax.axis('off')
+    ax.tight_layout()
 
     pil_im = fig2img(fig)
 
