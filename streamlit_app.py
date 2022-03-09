@@ -117,7 +117,7 @@ canvas_result = st_canvas(
     drawing_mode="point",
     point_display_radius=1,
     display_toolbar=False,
-    key="center_circle_app"
+    key="center_circle_app",
 )
 if canvas_result.json_data is not None:
     df = pd.json_normalize(canvas_result.json_data["objects"])
