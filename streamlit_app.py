@@ -11,6 +11,7 @@ import matplotlib.patches as patches
 import io
 import plotly.express as px
 import plotly.graph_objects as go
+from skimage.transform import downscale_local_mean
 
 
 def fig2img(fig):
@@ -134,12 +135,15 @@ y_slider = st.sidebar.slider('Anterior-posterios', min_value=0, max_value=199, v
 
 
 # Create a canvas component
+im_click_pre = lsfm[:, int(st.session_state.y_val)+30, :]
+im_click_pre = downscale_local_mean(im_click_pre,(2,2))
+im_click = im_plot(im_click_pre)
 canvas_result = st_canvas(
     stroke_width=0,
     stroke_color="black",
-    background_image=im_plot(lsfm[:, int(st.session_state.y_val)+30, :]),
-    height=297,
-    width=455,
+    background_image=im_click,
+    height=im_click.shape[0],
+    width=im_click.shape[1],
     drawing_mode="circle",
     display_toolbar=False,
     key="center_circle_app"
