@@ -111,8 +111,18 @@ if st.button('Prev'):
     st.session_state.y_val = str(int(st.session_state.y_val) - 10)
 
 
+# Create a canvas component
 image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
-st.image(image)
+canvas_mip = st_canvas(
+    stroke_width=0,
+    stroke_color="black",
+    background_image=image,
+    height=299,
+    width=147,
+    drawing_mode="circle",
+    display_toolbar=False,
+    key="mip"
+)
 
 # Create a canvas component
 canvas_result = st_canvas(
