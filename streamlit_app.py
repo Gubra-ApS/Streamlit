@@ -77,10 +77,8 @@ st.header('Stereotxic coordinate [' + x + ', ' + st.session_state.y_val + ', ' +
 # Specify canvas parameters in application
 bg_image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
 
-
 # Create a canvas component
 canvas_result = st_canvas(
-    fill_color="rgba(255, 165, 0, 0.2)",  # Fixed fill color with some opacity
     stroke_width=5,
     stroke_color="black",
     background_image=bg_image,
