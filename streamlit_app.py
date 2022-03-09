@@ -154,7 +154,7 @@ if canvas_result.json_data is not None:
             df["angle"] * np.pi / 180
         )
 
-        st.subheader("Click coordinate")
+        # st.subheader("Click coordinate")
         for index, row in df.iterrows():
             if index + 1 == len(df):
                 # st.markdown(
