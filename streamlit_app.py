@@ -173,21 +173,21 @@ with col2:
                     st.session_state.x_val = str(row["center_x"])
                     st.session_state.z_val = str(row["center_y"])
     # ano
-    im_click_pre = np.copy(lsfm_ano[:, int(st.session_state.y_val)+30, :])
-    im_click_pre[im_click_pre>255] = 255
-    im_click_pre = downscale_local_mean(im_click_pre,(2,2))
-    im_click = im_plot(im_click_pre)
+    im_click_pre_ano = np.copy(lsfm_ano[:, int(st.session_state.y_val)+30, :])
+    im_click_pre_ano[im_click_pre_ano>255] = 255
+    im_click_pre_ano = downscale_local_mean(im_click_pre_ano,(2,2))
+    im_click_ano = im_plot(im_click_pre_ano)
     canvas_result_ano = st_canvas(
         stroke_width=0,
         stroke_color="black",
-        background_image=im_click,
-        height=im_click_pre.shape[0],
-        width=im_click_pre.shape[1],
+        background_image=im_click_ano,
+        height=im_click_pre_ano.shape[0],
+        width=im_click_pre_ano.shape[1],
         drawing_mode="circle",
         display_toolbar=False,
         key="ano_click"
     )
-    if canvas_result.json_data is not None:
+    if canvas_result_ano.json_data is not None:
         df = pd.json_normalize(canvas_result_ano.json_data["objects"])
         if len(df) != 0:
             df["center_x"] = df["left"] + df["radius"] * np.cos(
