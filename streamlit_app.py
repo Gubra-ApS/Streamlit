@@ -34,11 +34,12 @@ def im_plot(im):
 
     return pil_im
 
-def im_plot_mip(im):
+def im_plot_mip(im, line_coord):
     px = 1 / plt.rcParams['figure.dpi']
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
     fig = plt.figure(figsize=(13.9, 10))
     plt.imshow(im)
+    plt.plot(0, im.shape[2], line_coord, line_coord, marker = 'o')
     plt.axis('off')
     plt.tight_layout()
 
@@ -132,7 +133,7 @@ pix = np.array(image)
 canvas_mip = st_canvas(
     stroke_width=0,
     stroke_color="black",
-    background_image=im_plot_mip(pix),
+    background_image=im_plot_mip(pix, 200),
     height=297,
     width=214,
     drawing_mode="circle",
