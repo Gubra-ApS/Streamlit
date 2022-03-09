@@ -112,8 +112,8 @@ option_highligt = st.sidebar.selectbox(
     'Current highlight region:',
      df_highligt['acronym'])
 
-temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
-st.session_state.y_val = str(temp.iloc[0]['slice_number'])
+# temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
+# st.session_state.y_val = str(temp.iloc[0]['slice_number'])
 
 st.sidebar.header('Stereotaxic coordinate')
 ste_coord = st.sidebar.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
