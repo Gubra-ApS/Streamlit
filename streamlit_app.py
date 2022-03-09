@@ -111,8 +111,8 @@ option_highligt = st.sidebar.selectbox(
     'Current highlight region:',
      df_highligt['acronym'])
 
-temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
-st.session_state.y_val = str(temp.iloc[0]['slice_number'])
+# temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
+# st.session_state.y_val = str(temp.iloc[0]['slice_number'])
 
 
 image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
