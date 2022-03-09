@@ -13,7 +13,7 @@ import io
 def fig2img(fig):
     """Convert a Matplotlib figure to a PIL Image and return it"""
     buf = io.BytesIO()
-    fig.savefig(buf)
+    fig.savefig(buf, pad_inches=0)
     buf.seek(0)
     img = Image.open(buf)
     return img
