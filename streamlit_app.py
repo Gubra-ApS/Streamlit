@@ -80,11 +80,11 @@ st.write('horizontal_white_neuropedia/'+option_highligt+'.tif')
 
 # Create a canvas component
 canvas_result = st_canvas(
-    stroke_width=5,
+    stroke_width=2,
     stroke_color="black",
     background_image=bg_image,
-    height=400,
-    width=600,
+    height=200,
+    width=300,
     drawing_mode="circle",
     key="center_circle_app",
 )
