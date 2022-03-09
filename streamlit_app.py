@@ -133,7 +133,10 @@ if st.sidebar.button('Got o coordinate'):
 #                     [[0, 255, 0], [0, 0, 255], [255, 0, 0]]
 #                    ], dtype=np.uint16)
 image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
-fig = px.imshow(np.array(image))
+fig = px.imshow(np.array(image),
+                labels=dict(x="Day of Week", y="Time of Day", color="Region ID"))
+fig.update_xaxes(showticklabels=False)
+fig.update_yaxes(showticklabels=False)
 st.plotly_chart(fig)
 
 
