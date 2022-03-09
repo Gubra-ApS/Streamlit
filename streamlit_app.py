@@ -16,9 +16,15 @@ def im_plot(im):
     plt.imshow(im, cmap='gray')
     plt.axis('off')
 
+    pil_im = Image.frombytes('RGB', fig.canvas.get_width_height(),fig.canvas.tostring_rgb())
+
+    # st.pyplot(fig)
+
+    return pil_im
 
 
-    st.pyplot(fig)
+
+
 
 # create session variables
 if 'y_val' not in st.session_state:
@@ -95,7 +101,7 @@ st.write('horizontal_white_neuropedia/'+option_highligt+'.tif')
 canvas_result = st_canvas(
     stroke_width=3,
     stroke_color="black",
-    background_image=bg_image,
+    background_image=im_plot(mri[:,int(st.session_state.y_val),:]),
     height=199,
     width=143,
     drawing_mode="circle",
