@@ -86,7 +86,7 @@ canvas_result = st_canvas(
     background_image=bg_image,
     height=400,
     width=600,
-    drawing_mode="circle",
+    drawing_mode="point",
     key="center_circle_app",
 )
 # with st.echo("below"):
