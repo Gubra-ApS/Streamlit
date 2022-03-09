@@ -23,7 +23,7 @@ def fig2img(fig):
 def im_plot(im):
     px = 1 / plt.rcParams['figure.dpi']
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
-    fig = plt.figure(figsize=(15, 10))
+    fig = plt.figure(figsize=(20, 15))
     plt.imshow(im, cmap='gray')
     plt.axis('off')
 
