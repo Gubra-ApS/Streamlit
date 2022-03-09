@@ -42,7 +42,7 @@ def im_plot_mip(im, line_coord):
     fig, ax = plt.subplots()
     ax.imshow(im)
 
-    rect = patches.Rectangle((50, 50), 200, 10, linewidth=1, edgecolor='r', facecolor='r')
+    rect = patches.Rectangle((0, 50), 200, 10, linewidth=1, edgecolor='r', facecolor='r')
     ax.add_patch(rect)
 
     ax.axis('off')
