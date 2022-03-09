@@ -134,9 +134,9 @@ with col1:
     ax.axis('off')
     fig.tight_layout()
     pil_im = fig2img(fig)
-    image(pil_im)
+    st.image(pil_im)
 
-    y_slider = slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
+    y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
 
 with col2:
     im_click_pre = lsfm[:, int(st.session_state.y_val)+30, :]
