@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import io
 import plotly.express as px
+import plotly.graph_objects as go
 
 
 def fig2img(fig):
@@ -56,7 +57,6 @@ def im_plot_mip(im, line_coord):
     return pil_im
 
 
-
 # create session variables
 if 'y_val' not in st.session_state:
     st.session_state['y_val'] = '280'
@@ -64,6 +64,7 @@ if 'x_val' not in st.session_state:
     st.session_state['x_val'] = '150'
 if 'z_val' not in st.session_state:
     st.session_state['z_val'] = '180'
+
 
 @st.cache  # 👈 This function will be cached
 def read_atlases(read):
@@ -85,10 +86,10 @@ def read_atlases(read):
 lsfm, mri, ccfv3, lsfm_ano = read_atlases(1)
 
 
-## Setup drop down selection menus
-df_options = pd.DataFrame({
-    'orientaion': ['Coronal', 'Sagital']
-    })
+# ## Setup drop down selection menus
+# df_options = pd.DataFrame({
+#     'orientaion': ['Coronal', 'Sagital']
+#     })
 
 # df_highligt = pd.DataFrame({
 #     'regions': ['hippo', 'cortex', 'ap', 'osv'],
@@ -100,19 +101,22 @@ df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 #     'Navigate in:',
 #      df_options['atlas'])
 
-st.sidebar.header('Select orientation')
-option_orientation = st.sidebar.selectbox(
-    'Slice orientation:',
-     df_options['orientaion'])
+# st.sidebar.header('Select orientation')
+# option_orientation = st.sidebar.selectbox(
+#     'Slice orientation:',
+#      df_options['orientaion'])
 
 st.sidebar.header('Atlas brain regions')
 option_highligt = st.sidebar.selectbox(
     'Current highlight region:',
      df_highligt['acronym'])
 
-if st.sidebar.button('Go to region centre'):
-    temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
-    st.session_state.y_val = str(temp.iloc[0]['slice_number'])
+temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
+st.session_state.y_val = str(temp.iloc[0]['slice_number'])
+
+# if st.sidebar.button('Go to region centre'):
+#     temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
+#     st.session_state.y_val = str(temp.iloc[0]['slice_number'])
 
 # 'You selected atlas: ', option_atlas
 # 'You selected orientation: ', option_orientation
@@ -132,14 +136,6 @@ if st.sidebar.button('Got o coordinate'):
 # img_rgb = np.array([[[255, 0, 0], [0, 255, 0], [0, 0, 255]],
 #                     [[0, 255, 0], [0, 0, 255], [255, 0, 0]]
 #                    ], dtype=np.uint16)
-image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
-fig = px.imshow(np.array(image),
-                labels=dict(x="Day of Week", y="Time of Day", color="Region ID"))
-fig.update_xaxes(showticklabels=False)
-fig.update_yaxes(showticklabels=False)
-st.plotly_chart(fig)
-
-
 
 #
 #
