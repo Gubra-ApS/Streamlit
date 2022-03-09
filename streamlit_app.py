@@ -11,7 +11,8 @@ import matplotlib.pyplot as plt
 
 # custom functions
 def im_plot(im):
-    fig = plt.figure(figsize=(10, 4))
+    px = 1 / plt.rcParams['figure.dpi']
+    fig = plt.figure(figsize=(455*px, 297*px))
     plt.imshow(im, cmap='gray')
     plt.axis('off')
 
