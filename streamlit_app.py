@@ -112,7 +112,7 @@ if st.button('Prev'):
 
 
 image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
-
+st.image(image)
 
 # Create a canvas component
 canvas_result = st_canvas(
