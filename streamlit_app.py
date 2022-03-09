@@ -39,7 +39,7 @@ def im_plot_mip(im, line_coord):
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
     fig = plt.figure(figsize=(13.9, 10))
     plt.imshow(im)
-    plt.plot(0, im.shape[2], line_coord, line_coord, marker = 'o')
+    plt.plot(0, line_coord, im.shape[2], line_coord, marker = 'o')
     plt.axis('off')
     plt.tight_layout()
 
