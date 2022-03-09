@@ -34,9 +34,6 @@ def im_plot(im):
 
 
 
-
-
-
 # create session variables
 if 'y_val' not in st.session_state:
     st.session_state['y_val'] = '280'
@@ -116,7 +113,8 @@ canvas_result = st_canvas(
     height=297,
     width=455,
     drawing_mode="circle",
-    key="center_circle_app",
+    display_toolbar=False,
+    key="center_circle_app"
 )
 if canvas_result.json_data is not None:
     df = pd.json_normalize(canvas_result.json_data["objects"])
@@ -128,7 +126,10 @@ if canvas_result.json_data is not None:
             df["angle"] * np.pi / 180
         )
 
-        st.subheader("List of circle drawings")
+        st.subheader("Click coordinate")
+        temp_df = df.iloc[-1]
+        st.write(temp_df)
+
         for _, row in df.iterrows():
             st.markdown(
                 f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
