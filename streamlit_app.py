@@ -118,6 +118,12 @@ with col1:
         image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
         st.image(image)
 
+    if option_orientation=='Sagital':
+        image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
+        st.image(image)
+        st.image(mri[:, :, int(x)])
+with col2:
+    if option_orientation == 'Coronal':
         # Create a canvas component
         canvas_result = st_canvas(
             stroke_width=0,
@@ -150,18 +156,11 @@ with col1:
                         st.session_state.x_val = str(row["center_x"])
                         st.session_state.z_val = str(row["center_y"])
 
-    if option_orientation=='Sagital':
-        image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
-        st.image(image)
-        st.image(mri[:, :, int(x)])
-# with col2:
-#     if option_orientation == 'Coronal':
-#         st.image(lsfm[:,int(st.session_state.y_val),:])
-#         st.image(ccfv3[:,int(st.session_state.y_val),:])
-#     if option_orientation == 'Sagital':
-#         st.image(lsfm[:, :, int(x)])
-#         st.image(ccfv3[:, :, int(x)])
-#
+    #st.image(ccfv3[:,int(st.session_state.y_val),:])
+    if option_orientation == 'Sagital':
+        st.image(lsfm[:, :, int(x)])
+        st.image(ccfv3[:, :, int(x)])
+
 
 
 
