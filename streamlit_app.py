@@ -165,7 +165,7 @@ with col1:
                     #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
-                    st.session_state.y_val = str(np.round(row["center_y"]))
+                    st.session_state.y_val = str(row["center_y"])
 
 
 
@@ -173,7 +173,7 @@ with col1:
 
 with col2:
     # template
-    im_click_pre = np.copy(lsfm[:, int(st.session_state.y_val)+30, :])
+    im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     im_click_pre = downscale_local_mean(im_click_pre,(2,2))
     im_click = im_plot(im_click_pre)
     canvas_result = st_canvas(
