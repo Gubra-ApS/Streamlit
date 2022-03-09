@@ -114,9 +114,9 @@ canvas_result = st_canvas(
     background_image=im_plot(mri[:,int(st.session_state.y_val),:]),
     height=297,
     width=455,
-    drawing_mode="point",
+    drawing_mode="circle",
     display_toolbar=False,
-    key="center_circle_app",
+    key="center_circle_app"
 )
 if canvas_result.json_data is not None:
     df = pd.json_normalize(canvas_result.json_data["objects"])
@@ -144,10 +144,12 @@ if canvas_result.json_data is not None:
                     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                 )
 
+        st.session_state.y_val = st.session_state.y_val + 10
 
-# show an image
-im_plot(mri[:,int(st.session_state.y_val),:])
-
+#
+# # show an image
+# im_plot(mri[:,int(st.session_state.y_val),:])
+#
 
 
 
