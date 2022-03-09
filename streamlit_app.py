@@ -129,10 +129,10 @@ if canvas_result.json_data is not None:
         st.subheader("Click coordinate")
 
         for index, row in df.iterrows():
-            st.write(index)
-            st.markdown(
-                f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-            )
+            if index==len(df):
+                st.markdown(
+                    f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                )
 
 
 # show an image
