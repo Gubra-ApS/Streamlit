@@ -145,6 +145,7 @@ canvas_mip = st_canvas(
     display_toolbar=False,
     key="mip"
 )
+st.write(st.session_state.x_val)
 
 # Create a canvas component
 canvas_result = st_canvas(
