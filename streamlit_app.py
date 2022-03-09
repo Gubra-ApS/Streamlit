@@ -113,8 +113,8 @@ canvas_result = st_canvas(
     stroke_width=3,
     stroke_color="black",
     background_image=im_plot(mri[:,int(st.session_state.y_val),:]),
-    height=199,
-    width=143,
+    height=297,
+    width=455,
     drawing_mode="circle",
     key="center_circle_app",
 )
