@@ -136,18 +136,38 @@ with col1:
     pix = np.array(image)
     y_coord = int(int(st.session_state.y_val) / 512 * 199) + 20
     im_mip = im_plot_mip(pix, y_coord)
-    st.image(im_mip)
+    # st.image(im_mip)
 
-    #
-    # fig, ax = plt.subplots()
-    # ax.imshow(pix)
-    # y_coord = int(int(st.session_state.y_val) / 512 * 199) + 20
-    # rect = patches.Rectangle((0, y_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
-    # ax.add_patch(rect)
-    # ax.axis('off')
-    # fig.tight_layout()
-    # pil_im = fig2img(fig)
-    # st.image(pil_im)
+    canvas_result_mip = st_canvas(
+        stroke_width=0,
+        stroke_color="black",
+        background_image=im_mip,
+        height=199,
+        width=143,
+        drawing_mode="circle",
+        display_toolbar=False,
+        key="mip"
+    )
+    if canvas_result_mip.json_data is not None:
+        df = pd.json_normalize(canvas_result_mip.json_data["objects"])
+        if len(df) != 0:
+            df["center_x"] = df["left"] + df["radius"] * np.cos(
+                df["angle"] * np.pi / 180
+            )
+            df["center_y"] = df["top"] + df["radius"] * np.sin(
+                df["angle"] * np.pi / 180
+            )
+
+            # st.subheader("Click coordinate")
+            for index, row in df.iterrows():
+                if index + 1 == len(df):
+                    # st.markdown(
+                    #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                    #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                    # )
+                    st.session_state.y_val = str(row["center_y"])
+
+
 
     y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
 
