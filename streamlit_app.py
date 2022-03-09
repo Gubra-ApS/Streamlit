@@ -70,16 +70,19 @@ def read_atlases(read):
     # load atlas files only once
     lsfm = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_temp.nii.gz'))
     lsfm = np.flip(lsfm, axis=0)
+    lsfm_ano = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_ano_gubra.nii.gz'))
+    lsfm_ano = np.flip(lsfm_ano, axis=0)
+
     mri = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/MRI_space_oriented/mri_temp.nii.gz'))
     mri = np.flip(mri, axis=0)
     ccfv3 = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/AIBS_CCFv3_space_oriented/ccfv3_temp.nii.gz'))
     ccfv3[ccfv3>255] = 255
     ccfv3 = np.flip(ccfv3, axis=0)
 
-    return lsfm, mri, ccfv3
+    return lsfm, mri, ccfv3, lsfm_ano
 
 # read atlas volume (only at first app load)
-lsfm, mri, ccfv3 = read_atlases(1)
+lsfm, mri, ccfv3, lsfm_ano = read_atlases(1)
 
 
 ## Setup drop down selection menus
@@ -126,10 +129,11 @@ if st.sidebar.button('Got o coordinate'):
 #
 
 
-img_rgb = np.array([[[255, 0, 0], [0, 255, 0], [0, 0, 255]],
-                    [[0, 255, 0], [0, 0, 255], [255, 0, 0]]
-                   ], dtype=np.uint8)
-fig = px.imshow(img_rgb)
+# img_rgb = np.array([[[255, 0, 0], [0, 255, 0], [0, 0, 255]],
+#                     [[0, 255, 0], [0, 0, 255], [255, 0, 0]]
+#                    ], dtype=np.uint16)
+image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
+fig = px.imshow(np.array(image))
 st.plotly_chart(fig)
 
 
