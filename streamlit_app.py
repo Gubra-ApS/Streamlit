@@ -7,6 +7,7 @@ from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 import json
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 import io
 
 
@@ -38,8 +39,11 @@ def im_plot_mip(im, line_coord):
     px = 1 / plt.rcParams['figure.dpi']
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
     fig = plt.figure(figsize=(13.9, 10))
-    # plt.imshow(im)
-    plt.plot(0, line_coord, im.shape[2], line_coord, marker = 'o')
+    plt.imshow(im)
+
+    rect = patches.Rectangle((100, 20), 100, 30, linewidth=1, edgecolor='r', facecolor='none')
+    plt.add_patch(rect)
+
     plt.axis('off')
     plt.tight_layout()
 
