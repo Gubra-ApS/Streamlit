@@ -114,6 +114,15 @@ option_highligt = st.sidebar.selectbox(
 temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
 st.session_state.y_val = str(temp.iloc[0]['slice_number'])
 
+
+image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
+pix = np.array(image)
+#im_mip = im_plot_mip(pix, int(st.session_state.y_val))
+im_mip = im_plot_mip(pix, 200)
+st.sidebar.image(im_mip)
+
+
+
 # if st.sidebar.button('Go to region centre'):
 #     temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
 #     st.session_state.y_val = str(temp.iloc[0]['slice_number'])
