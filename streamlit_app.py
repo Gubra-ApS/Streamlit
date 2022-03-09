@@ -26,6 +26,7 @@ def im_plot(im):
     fig = plt.figure(figsize=(20, 15))
     plt.imshow(im, cmap='gray')
     plt.axis('off')
+    plt.tight_layout()
 
     pil_im = fig2img(fig)
 
