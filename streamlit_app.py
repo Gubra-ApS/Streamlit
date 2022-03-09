@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 
 # custom functions
 def im_plot(im):
-    fig, ax = plt.figure(figsize=(10, 4))
-    ax.imshow(im, cmap='gray')
-    ax.axis('off')
+    fig = plt.figure(figsize=(10, 4))
+    plt.imshow(im, cmap='gray')
+    plt.axis('off')
 
 
 
