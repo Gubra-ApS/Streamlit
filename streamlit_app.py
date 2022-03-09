@@ -115,26 +115,39 @@ option_highligt = st.sidebar.selectbox(
 temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
 st.session_state.y_val = str(temp.iloc[0]['slice_number'])
 
-# st.sidebar.header('Explore')
+st.sidebar.header('Stereotaxic coordinate')
+ste_coord = st.sidebar.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
 
+if st.sidebar.button('Got to coordinate'):
+    # parse text string and set sesseio state vars
+    st.write(ste_coord)
+    # st.session_state.y_val = y
+    # st.session_state.x_val = x
+    # st.session_state.z_val = z
+#
+
+
+# st.sidebar.header('Explore')
 
 # Create a canvas component
 col1, col2 = st.columns(2)
 with col1:
     image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
     pix = np.array(image)
-    # im_mip = im_plot_mip(pix, int(st.session_state.y_val))
-    # im_mip = im_plot_mip(pix, 150)
-    #
-    fig, ax = plt.subplots()
-    ax.imshow(pix)
     y_coord = int(int(st.session_state.y_val) / 512 * 199) + 20
-    rect = patches.Rectangle((0, y_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
-    ax.add_patch(rect)
-    ax.axis('off')
-    fig.tight_layout()
-    pil_im = fig2img(fig)
-    st.image(pil_im)
+    im_mip = im_plot_mip(pix, y_coord)
+    st.image(im_mip)
+
+    #
+    # fig, ax = plt.subplots()
+    # ax.imshow(pix)
+    # y_coord = int(int(st.session_state.y_val) / 512 * 199) + 20
+    # rect = patches.Rectangle((0, y_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
+    # ax.add_patch(rect)
+    # ax.axis('off')
+    # fig.tight_layout()
+    # pil_im = fig2img(fig)
+    # st.image(pil_im)
 
     y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
 
@@ -215,17 +228,6 @@ with col2:
 # 'You selected atlas: ', option_atlas
 # 'You selected orientation: ', option_orientation
 # 'You selected regions: ', option_orientation
-
-st.sidebar.header('Stereotaxic coordinate')
-ste_coord = st.sidebar.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
-
-if st.sidebar.button('Got to coordinate'):
-    # parse text string and set sesseio state vars
-    st.write(ste_coord)
-    # st.session_state.y_val = y
-    # st.session_state.x_val = x
-    # st.session_state.z_val = z
-#
 
 
 #
