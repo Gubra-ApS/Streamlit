@@ -34,6 +34,20 @@ def im_plot(im):
 
     return pil_im
 
+def im_plot_mip(im):
+    px = 1 / plt.rcParams['figure.dpi']
+    # fig = plt.figure(figsize=(int(455*px), int(297*px)))
+    fig = plt.figure(figsize=(13,9, 10))
+    plt.imshow(im)
+    plt.axis('off')
+    plt.tight_layout()
+
+    pil_im = fig2img(fig)
+
+    # st.pyplot(fig)
+
+    return pil_im
+
 
 
 # create session variables
@@ -118,7 +132,7 @@ pix = np.array(image)
 canvas_mip = st_canvas(
     stroke_width=0,
     stroke_color="black",
-    background_image=im_plot(pix),
+    background_image=im_plot_mip(pix),
     height=297,
     width=214,
     drawing_mode="circle",
