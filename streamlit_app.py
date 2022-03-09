@@ -138,7 +138,7 @@ with col1:
     y_coord_fig = int(float(st.session_state.y_val))
     st.write(y_coord_fig)
     im_mip = im_plot_mip(pix, y_coord_fig)
-    # st.image(im_mip)
+    st.image(im_mip)
 
     canvas_result_mip = st_canvas(
         stroke_width=0,
