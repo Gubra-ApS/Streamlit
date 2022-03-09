@@ -113,10 +113,12 @@ if st.button('Prev'):
 
 # Create a canvas component
 image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
+pix = np.array(image)
+
 canvas_mip = st_canvas(
     stroke_width=0,
     stroke_color="black",
-    background_image=image,
+    background_image=im_plot(pix),
     height=297,
     width=214,
     drawing_mode="circle",
