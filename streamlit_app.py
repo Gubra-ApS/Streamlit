@@ -19,7 +19,7 @@ def im_plot(im):
 
 # create session variables
 if 'y_val' not in st.session_state:
-    st.session_state['y_val'] = '300'
+    st.session_state['y_val'] = '280'
 
 @st.cache  # 👈 This function will be cached
 def read_atlases(read):
