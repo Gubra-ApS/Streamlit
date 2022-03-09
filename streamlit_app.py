@@ -120,7 +120,7 @@ pix = np.array(image)
 #im_mip = im_plot_mip(pix, int(st.session_state.y_val))
 # im_mip = im_plot_mip(pix, 150)
 #
-st.write(st.session_state.y_val)
+st.write(int(st.session_state.y_val))
 fig, ax = plt.subplots()
 ax.imshow(pix)
 rect = patches.Rectangle((0, int(st.session_state.y_val)), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
