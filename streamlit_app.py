@@ -89,22 +89,21 @@ canvas_result = st_canvas(
     drawing_mode="circle",
     key="center_circle_app",
 )
-with st.echo("below"):
-    if canvas_result.json_data is not None:
-        df = pd.json_normalize(canvas_result.json_data["objects"])
-        if len(df) != 0:
-            df["center_x"] = df["left"] + df["radius"] * np.cos(
-                df["angle"] * np.pi / 180
-            )
-            df["center_y"] = df["top"] + df["radius"] * np.sin(
-                df["angle"] * np.pi / 180
-            )
+if canvas_result.json_data is not None:
+    df = pd.json_normalize(canvas_result.json_data["objects"])
+    if len(df) != 0:
+        df["center_x"] = df["left"] + df["radius"] * np.cos(
+            df["angle"] * np.pi / 180
+        )
+        df["center_y"] = df["top"] + df["radius"] * np.sin(
+            df["angle"] * np.pi / 180
+        )
 
-            st.subheader("List of circle drawings")
-            for _, row in df.iterrows():
-                st.markdown(
-                    f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                )
+        st.subheader("List of circle drawings")
+        for _, row in df.iterrows():
+            st.markdown(
+                f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+            )
 
 
 
