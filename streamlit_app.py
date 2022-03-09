@@ -115,8 +115,8 @@ canvas_result = st_canvas(
     height=297,
     width=455,
     drawing_mode="point",
-    point_display_radius=1,
     display_toolbar=False,
+    point_display_radius=1,
     key="center_circle_app",
 )
 if canvas_result.json_data is not None:
