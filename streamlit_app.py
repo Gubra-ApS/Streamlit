@@ -7,6 +7,16 @@ from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 import json
 import matplotlib.pyplot as plt
+import io
+
+
+def fig2img(fig):
+    """Convert a Matplotlib figure to a PIL Image and return it"""
+    buf = io.BytesIO()
+    fig.savefig(buf)
+    buf.seek(0)
+    img = Image.open(buf)
+    return img
 
 
 # custom functions
@@ -16,11 +26,12 @@ def im_plot(im):
     plt.imshow(im, cmap='gray')
     plt.axis('off')
 
-    pil_im = Image.frombytes('RGB', fig.canvas.get_width_height(),fig.canvas.tostring_rgb())
+    pil_im = fig2img(fig)
 
     # st.pyplot(fig)
 
     return pil_im
+
 
 
 
