@@ -135,7 +135,6 @@ with col1:
     image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
     pix = np.array(image)
     y_coord = int(int(float(st.session_state.y_val)) / 512 * 199) + 20
-    st.write(y_coord)
     im_mip = im_plot_mip(pix, y_coord)
 
     canvas_result_mip = st_canvas(
@@ -168,7 +167,7 @@ with col1:
                     st.session_state.y_val = str(int(row["center_y"] / 199 * 512) + 25)
 
 
-
+    st.image(im_mip)
     # y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
 
 with col2:
