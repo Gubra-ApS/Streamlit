@@ -114,7 +114,7 @@ option_highligt = st.sidebar.selectbox(
 temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
 st.session_state.y_val = str(temp.iloc[0]['slice_number'])
 
-
+st.sidebar.header('Explore')
 image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
 pix = np.array(image)
 #im_mip = im_plot_mip(pix, int(st.session_state.y_val))
@@ -142,7 +142,7 @@ y_slider = st.sidebar.slider('Anterior-posterios', min_value=0, max_value=199, v
 # 'You selected orientation: ', option_orientation
 # 'You selected regions: ', option_orientation
 
-st.sidebar.header('Coordinate picker')
+st.sidebar.header('Stereotaxic coordinate')
 ste_coord = st.sidebar.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
 
 if st.sidebar.button('Got to coordinate'):
