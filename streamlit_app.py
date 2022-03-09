@@ -136,7 +136,7 @@ with col1:
     pix = np.array(image)
     y_coord = int(int(float(st.session_state.y_val)) / 512 * 199) + 20
     st.write(y_coord)
-    im_mip = im_plot_mip(pix, 33)
+    im_mip = im_plot_mip(pix, 133)
     st.image(im_mip)
 
     canvas_result_mip = st_canvas(
