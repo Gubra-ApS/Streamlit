@@ -120,7 +120,6 @@ pix = np.array(image)
 #im_mip = im_plot_mip(pix, int(st.session_state.y_val))
 # im_mip = im_plot_mip(pix, 150)
 #
-st.write(int(st.session_state.y_val))
 fig, ax = plt.subplots()
 ax.imshow(pix)
 y_coord = int(int(st.session_state.y_val)/512*199)+20
@@ -132,7 +131,7 @@ pil_im = fig2img(fig)
 st.sidebar.image(pil_im)
 
 y_slider = st.sidebar.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
-st.session_state.y_val = str(y_slider)
+
 
 
 # if st.sidebar.button('Go to region centre'):
@@ -144,13 +143,14 @@ st.session_state.y_val = str(y_slider)
 # 'You selected regions: ', option_orientation
 
 st.sidebar.header('Coordinate picker')
-x = st.sidebar.text_input('x (medial-laterally):', '0')
-y = st.sidebar.text_input('y (anterior-posterior):', '300')
-z = st.sidebar.text_input('z (dorsal-ventral):', '0')
-if st.sidebar.button('Got o coordinate'):
-    st.session_state.y_val = y
-    st.session_state.x_val = x
-    st.session_state.z_val = z
+ste_coord = st.sidebar.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
+
+if st.sidebar.button('Got to coordinate'):
+    # parse text string and set sesseio state vars
+    st.write(ste_coord)
+    # st.session_state.y_val = y
+    # st.session_state.x_val = x
+    # st.session_state.z_val = z
 #
 
 
