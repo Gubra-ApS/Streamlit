@@ -37,7 +37,7 @@ def im_plot(im):
 def im_plot_mip(im):
     px = 1 / plt.rcParams['figure.dpi']
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
-    fig = plt.figure(figsize=(13,9, 10))
+    fig = plt.figure(figsize=(13.9, 10))
     plt.imshow(im)
     plt.axis('off')
     plt.tight_layout()
