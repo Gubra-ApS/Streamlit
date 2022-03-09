@@ -46,7 +46,7 @@ def im_plot_mip(im, line_coord):
     ax.add_patch(rect)
 
     ax.axis('off')
-    ax.tight_layout()
+    fig.tight_layout()
 
     pil_im = fig2img(fig)
 
