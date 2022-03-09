@@ -135,6 +135,7 @@ with col1:
     image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
     pix = np.array(image)
     y_coord = int(int(st.session_state.y_val) / 512 * 199) + 20
+    st.write(y_coord)
     im_mip = im_plot_mip(pix, y_coord)
     st.image(im_mip)
 
