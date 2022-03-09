@@ -59,7 +59,7 @@ def im_plot_mip(im, line_coord):
 
 # create session variables
 if 'y_val' not in st.session_state:
-    st.session_state['y_val'] = '280'
+    st.session_state['y_val'] = '150'
 if 'x_val' not in st.session_state:
     st.session_state['x_val'] = '150'
 if 'z_val' not in st.session_state:
