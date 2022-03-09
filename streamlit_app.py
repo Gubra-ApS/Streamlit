@@ -165,7 +165,7 @@ with col1:
                     #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
-                    st.session_state.y_val = str(row["center_y"])
+                    st.session_state.y_val = str(np.round(row["center_y"]))
 
 
 
