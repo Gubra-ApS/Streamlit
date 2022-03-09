@@ -139,6 +139,7 @@ with col1:
     y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
 
 with col2:
+    # template
     im_click_pre = lsfm[:, int(st.session_state.y_val)+30, :]
     im_click_pre = downscale_local_mean(im_click_pre,(2,2))
     im_click = im_plot(im_click_pre)
@@ -171,7 +172,39 @@ with col2:
                     # )
                     st.session_state.x_val = str(row["center_x"])
                     st.session_state.z_val = str(row["center_y"])
+    # ano
+    im_click_pre = lsfm[:, int(st.session_state.y_val)+30, :]
+    im_click_pre = downscale_local_mean(im_click_pre,(2,2))
+    im_click = im_plot(im_click_pre)
+    canvas_result_ano = st_canvas(
+        stroke_width=0,
+        stroke_color="black",
+        background_image=im_click,
+        height=im_click_pre.shape[0],
+        width=im_click_pre.shape[1],
+        drawing_mode="circle",
+        display_toolbar=False,
+        key="ano_click"
+    )
+    if canvas_result.json_data is not None:
+        df = pd.json_normalize(canvas_result.json_data["objects"])
+        if len(df) != 0:
+            df["center_x"] = df["left"] + df["radius"] * np.cos(
+                df["angle"] * np.pi / 180
+            )
+            df["center_y"] = df["top"] + df["radius"] * np.sin(
+                df["angle"] * np.pi / 180
+            )
 
+            # st.subheader("Click coordinate")
+            for index, row in df.iterrows():
+                if index + 1 == len(df):
+                    # st.markdown(
+                    #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                    #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                    # )
+                    st.session_state.x_val = str(row["center_x"])
+                    st.session_state.z_val = str(row["center_y"])
 
 
 # if st.sidebar.button('Go to region centre'):
