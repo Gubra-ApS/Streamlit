@@ -45,7 +45,7 @@ def im_plot_mip(im, line_coord):
     fig, ax = plt.subplots()
     ax.imshow(im)
 
-    rect = patches.Rectangle((0, 150), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
+    rect = patches.Rectangle((0, line_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
     ax.add_patch(rect)
 
     ax.axis('off')
@@ -135,8 +135,7 @@ with col1:
     image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
     pix = np.array(image)
     y_coord = int(int(float(st.session_state.y_val)) / 512 * 199) + 20
-    st.write(y_coord)
-    im_mip = im_plot_mip(pix, 1)
+    im_mip = im_plot_mip(pix, y_coord)
     st.image(im_mip)
 
     canvas_result_mip = st_canvas(
