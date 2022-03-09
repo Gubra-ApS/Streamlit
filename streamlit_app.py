@@ -115,36 +115,36 @@ image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
 
 
 # Create a canvas component
-        canvas_result = st_canvas(
-            stroke_width=0,
-            stroke_color="black",
-            background_image=im_plot(mri[:, int(st.session_state.y_val), :]),
-            height=297,
-            width=455,
-            drawing_mode="circle",
-            display_toolbar=False,
-            key="center_circle_app"
+canvas_result = st_canvas(
+    stroke_width=0,
+    stroke_color="black",
+    background_image=im_plot(mri[:, int(st.session_state.y_val), :]),
+    height=297,
+    width=455,
+    drawing_mode="circle",
+    display_toolbar=False,
+    key="center_circle_app"
+)
+if canvas_result.json_data is not None:
+    df = pd.json_normalize(canvas_result.json_data["objects"])
+    if len(df) != 0:
+        df["center_x"] = df["left"] + df["radius"] * np.cos(
+            df["angle"] * np.pi / 180
         )
-        if canvas_result.json_data is not None:
-            df = pd.json_normalize(canvas_result.json_data["objects"])
-            if len(df) != 0:
-                df["center_x"] = df["left"] + df["radius"] * np.cos(
-                    df["angle"] * np.pi / 180
-                )
-                df["center_y"] = df["top"] + df["radius"] * np.sin(
-                    df["angle"] * np.pi / 180
+        df["center_y"] = df["top"] + df["radius"] * np.sin(
+            df["angle"] * np.pi / 180
+        )
+
+        st.subheader("Click coordinate")
+        for index, row in df.iterrows():
+            if index + 1 == len(df):
+                st.markdown(
+                    # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                    f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                 )
 
-                st.subheader("Click coordinate")
-                for index, row in df.iterrows():
-                    if index + 1 == len(df):
-                        st.markdown(
-                            # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                            f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                        )
-
-                        st.session_state.x_val = str(row["center_x"])
-                        st.session_state.z_val = str(row["center_y"])
+                st.session_state.x_val = str(row["center_x"])
+                st.session_state.z_val = str(row["center_y"])
 
 #
 # col1, col2 = st.columns(2)
