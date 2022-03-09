@@ -115,58 +115,62 @@ option_highligt = st.sidebar.selectbox(
 temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
 st.session_state.y_val = str(temp.iloc[0]['slice_number'])
 
-st.sidebar.header('Explore')
-image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
-pix = np.array(image)
-#im_mip = im_plot_mip(pix, int(st.session_state.y_val))
-# im_mip = im_plot_mip(pix, 150)
-#
-fig, ax = plt.subplots()
-ax.imshow(pix)
-y_coord = int(int(st.session_state.y_val)/512*199)+20
-rect = patches.Rectangle((0, y_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
-ax.add_patch(rect)
-ax.axis('off')
-fig.tight_layout()
-pil_im = fig2img(fig)
-st.sidebar.image(pil_im)
-
-y_slider = st.sidebar.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
+# st.sidebar.header('Explore')
 
 
 # Create a canvas component
-im_click_pre = lsfm[:, int(st.session_state.y_val)+30, :]
-im_click_pre = downscale_local_mean(im_click_pre,(2,2))
-im_click = im_plot(im_click_pre)
-canvas_result = st_canvas(
-    stroke_width=0,
-    stroke_color="black",
-    background_image=im_click,
-    height=im_click_pre.shape[0],
-    width=im_click_pre.shape[1],
-    drawing_mode="circle",
-    display_toolbar=False,
-    key="center_circle_app"
-)
-if canvas_result.json_data is not None:
-    df = pd.json_normalize(canvas_result.json_data["objects"])
-    if len(df) != 0:
-        df["center_x"] = df["left"] + df["radius"] * np.cos(
-            df["angle"] * np.pi / 180
-        )
-        df["center_y"] = df["top"] + df["radius"] * np.sin(
-            df["angle"] * np.pi / 180
-        )
+col1, col2 = st.columns(2)
+with col1:
+    image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
+    pix = np.array(image)
+    # im_mip = im_plot_mip(pix, int(st.session_state.y_val))
+    # im_mip = im_plot_mip(pix, 150)
+    #
+    fig, ax = plt.subplots()
+    ax.imshow(pix)
+    y_coord = int(int(st.session_state.y_val) / 512 * 199) + 20
+    rect = patches.Rectangle((0, y_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
+    ax.add_patch(rect)
+    ax.axis('off')
+    fig.tight_layout()
+    pil_im = fig2img(fig)
+    st.sidebar.image(pil_im)
 
-        # st.subheader("Click coordinate")
-        for index, row in df.iterrows():
-            if index + 1 == len(df):
-                # st.markdown(
-                #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                # )
-                st.session_state.x_val = str(row["center_x"])
-                st.session_state.z_val = str(row["center_y"])
+    y_slider = st.sidebar.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
+
+with col2:
+    im_click_pre = lsfm[:, int(st.session_state.y_val)+30, :]
+    im_click_pre = downscale_local_mean(im_click_pre,(2,2))
+    im_click = im_plot(im_click_pre)
+    canvas_result = st_canvas(
+        stroke_width=0,
+        stroke_color="black",
+        background_image=im_click,
+        height=im_click_pre.shape[0],
+        width=im_click_pre.shape[1],
+        drawing_mode="circle",
+        display_toolbar=False,
+        key="center_circle_app"
+    )
+    if canvas_result.json_data is not None:
+        df = pd.json_normalize(canvas_result.json_data["objects"])
+        if len(df) != 0:
+            df["center_x"] = df["left"] + df["radius"] * np.cos(
+                df["angle"] * np.pi / 180
+            )
+            df["center_y"] = df["top"] + df["radius"] * np.sin(
+                df["angle"] * np.pi / 180
+            )
+
+            # st.subheader("Click coordinate")
+            for index, row in df.iterrows():
+                if index + 1 == len(df):
+                    # st.markdown(
+                    #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                    #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                    # )
+                    st.session_state.x_val = str(row["center_x"])
+                    st.session_state.z_val = str(row["center_y"])
 
 
 
