@@ -83,8 +83,8 @@ canvas_result = st_canvas(
     stroke_width=3,
     stroke_color="black",
     background_image=bg_image,
-    height=398,
-    width=286,
+    height=800,
+    width=200,
     drawing_mode="circle",
     key="center_circle_app",
 )
