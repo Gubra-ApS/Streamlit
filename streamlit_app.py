@@ -140,7 +140,7 @@ if canvas_result.json_data is not None:
                 )
 
                 st.session_state.x_val = str(row["center_x"])
-                st.session_state.z_val = str(row["center_z"])
+                st.session_state.z_val = str(row["center_y"])
 
 #
 # # show an image
