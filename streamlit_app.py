@@ -135,10 +135,11 @@ if st.button('Prev'):
 image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
 pix = np.array(image)
 
+im_mip = im_plot_mip(pix, int(st.session_state.y_val))
 canvas_mip = st_canvas(
     stroke_width=0,
     stroke_color="black",
-    background_image=im_plot_mip(pix, int(st.session_state.y_val)),
+    background_image=im_mip,
     height=297,
     width=214,
     drawing_mode="circle",
