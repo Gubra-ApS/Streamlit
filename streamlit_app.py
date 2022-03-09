@@ -38,13 +38,13 @@ def im_plot(im):
     return pil_im
 
 def im_plot_mip(im, line_coord):
-    px = 1 / plt.rcParams['figure.dpi']
+    # px = 1 / plt.rcParams['figure.dpi']
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
     #fig = plt.figure(figsize=(13.9, 10))
     fig, ax = plt.subplots()
     ax.imshow(im)
 
-    rect = patches.Rectangle((0, line_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
+    rect = patches.Rectangle((0, 150), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
     ax.add_patch(rect)
 
     ax.axis('off')
