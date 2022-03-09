@@ -76,6 +76,7 @@ st.header('Stereotxic coordinate [' + x + ', ' + st.session_state.y_val + ', ' +
 
 # Specify canvas parameters in application
 bg_image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
+st.write('horizontal_white_neuropedia/'+option_highligt+'.tif')
 
 # Create a canvas component
 canvas_result = st_canvas(
