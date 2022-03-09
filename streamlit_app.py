@@ -145,6 +145,7 @@ if canvas_result.json_data is not None:
                 )
 
         st.session_state.y_val = str(int(st.session_state.y_val) + 10)
+        canvas_result.json_data = None
 
 #
 # # show an image
