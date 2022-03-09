@@ -149,6 +149,8 @@ if canvas_result.json_data is not None:
     for col in objects.select_dtypes(include=["object"]).columns:
         objects[col] = objects[col].astype("str")
     st.dataframe(objects)
+    with open('saved_state.json', 'w') as fp:
+        json.dump(canvas_result.json_data, fp, indent=4)
 
 
 
