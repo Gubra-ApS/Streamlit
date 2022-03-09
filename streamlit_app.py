@@ -4,7 +4,7 @@ import numpy as np
 import time
 import SimpleITK as sitk
 from PIL import Image
-from streamlit-drawable-canvas import st_canvas
+from streamlit_drawable_canvas import st_canvas
 
 # create session variables
 if 'y_val' not in st.session_state:
