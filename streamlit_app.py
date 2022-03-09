@@ -118,8 +118,16 @@ st.session_state.y_val = str(temp.iloc[0]['slice_number'])
 image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
 pix = np.array(image)
 #im_mip = im_plot_mip(pix, int(st.session_state.y_val))
-im_mip = im_plot_mip(pix, 200)
-st.sidebar.image(im_mip)
+# im_mip = im_plot_mip(pix, 150)
+#
+fig, ax = plt.subplots()
+ax.imshow(pix)
+rect = patches.Rectangle((0, 150), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
+ax.add_patch(rect)
+ax.axis('off')
+fig.tight_layout()
+pil_im = fig2img(fig)
+st.sidebar.image(pil_im)
 
 
 
