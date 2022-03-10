@@ -19,6 +19,8 @@ def local_css(file_name):
 
 local_css("style.css")
 
+st.set_page_config(layout='wide')
+st.title("Perens atlas")
 
 def fig2img(fig):
     """Convert a Matplotlib figure to a PIL Image and return it"""
@@ -258,7 +260,7 @@ with col2:
     st.image(im_lsfm_pil)
 
     if st.button('Sync to LSFM'):
-        # parse text string and set sesseio state vars
+        # JPE calculations
         st.session_state.y_val_mri = st.session_state.y_val
         st.session_state.x_val_mri = st.session_state.x_val
         st.session_state.z_val_mri = st.session_state.z_val
