@@ -45,8 +45,8 @@ def im_plot_mip(im, line_coord):
     fig, ax = plt.subplots()
     ax.imshow(im)
 
-    rect = patches.Rectangle((0, line_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
-    ax.add_patch(rect)
+    # rect = patches.Rectangle((0, line_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
+    # ax.add_patch(rect)
 
     ax.axis('off')
     fig.tight_layout()
@@ -167,10 +167,8 @@ with col1:
                     st.session_state.y_val = str(int(row["center_y"] / 199 * 512) + 25)
 
 
-    y_coord = int(int(float(st.session_state.y_val)) / 512 * 199) + 20
-    im_mip = im_plot_mip(pix, y_coord)
-    st.image(im_mip)
-    # y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
+
+    y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
 
 with col2:
     # template
