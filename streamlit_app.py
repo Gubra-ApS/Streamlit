@@ -152,7 +152,6 @@ with col1:
 
     # template coronal
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    st.write(im_click_pre.shape)
     im_click_pre = resize(im_click_pre,(179,246))
     im_click = helpers.im_plot(im_click_pre)
     canvas_result = st_canvas(
