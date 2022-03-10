@@ -166,9 +166,10 @@ with col1:
                     # )
                     st.session_state.y_val = str(int(row["center_y"] / 199 * 512) + 25)
 
-
-
-    y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
+    if st.button('Next'):
+        st.session_state.y_val = str(int(st.session_state.y_val)+5)
+    if st.button('Prev'):
+        st.session_state.y_val = str(int(st.session_state.y_val)-5)
 
     # template
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
