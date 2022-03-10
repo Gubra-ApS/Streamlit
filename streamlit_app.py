@@ -89,13 +89,6 @@ col1, col2 = st.columns(2)
 with col1:
     st.header('Coordinate picker')
 
-    ### TEXT FIELD INPUT
-    ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):',
-                              f'{st.session_state.x_val}; {st.session_state.y_val}; {st.session_state.z_val}',
-                              key="ste_coord_s",
-                              on_change=ste_coord_sess)
-
-
     ### SELECT BOX WITH ATLAS REGIONS
     option_highligt = st.selectbox(
         'Current highlight region:',
@@ -181,6 +174,13 @@ with col1:
     #                 # )
     #                 st.session_state.x_val = str(row["center_x"])
     #                 st.session_state.z_val = str(row["center_y"])
+
+
+    ### TEXT FIELD INPUT
+    ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):',
+                              f'{st.session_state.x_val}; {st.session_state.y_val}; {st.session_state.z_val}',
+                              key="ste_coord_s",
+                              on_change=ste_coord_sess)
 
 
 with col2:
