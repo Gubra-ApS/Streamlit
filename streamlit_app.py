@@ -103,7 +103,7 @@ with col1:
     pix = np.array(image)
     pix = np.swapaxes(pix, 0, 1)
     y_coord = int(int(float(st.session_state.y_val)) / 512 * 199) + 20
-    im_mip = im_plot_mip(pix, y_coord)
+    im_mip = helpers.im_plot_mip(pix, y_coord)
 
     canvas_result_mip = st_canvas(
         stroke_width=0,
@@ -151,7 +151,7 @@ with col1:
     # template
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     im_click_pre = downscale_local_mean(im_click_pre,(2,2))
-    im_click = im_plot(im_click_pre)
+    im_click = helpers.im_plot(im_click_pre)
     canvas_result = st_canvas(
         stroke_width=0,
         stroke_color="black",
@@ -192,7 +192,7 @@ with col2:
     # plot LSFM
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     im_lsfm = downscale_local_mean(im_lsfm,(2,2))
-    im_lsfm_pil = im_plot_coord(im_lsfm, st.session_state.x_val, st.session_state.z_val)
+    im_lsfm_pil = helpers.im_plot_coord(im_lsfm, st.session_state.x_val, st.session_state.z_val)
     st.image(im_lsfm_pil)
 
     if st.button('Sync to LSFM'):
@@ -208,20 +208,16 @@ with col2:
     # plot MRI
     im_mri = np.copy(mri[:, int(float(st.session_state.y_val_mri))+30, :])
     im_mri = downscale_local_mean(im_mri,(2,2))
-    im_mri_pil = im_plot_coord(im_mri, st.session_state.x_val_mri, st.session_state.z_val_mri)
+    im_mri_pil = helpers.im_plot_coord(im_mri, st.session_state.x_val_mri, st.session_state.z_val_mri)
     st.image(im_mri_pil)
 
     # plot CCFv3
     im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val_ccfv3))+30, :])
     im_ccfv3 = downscale_local_mean(im_ccfv3,(2,2))
-    im_ccfv3_pil = im_plot_coord(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
+    im_ccfv3_pil = helpers.im_plot_coord(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
     st.image(im_ccfv3_pil)
 
-
     #
-
-
-
 
     # # ano
     # im_click_pre_ano = np.copy(lsfm_ano[:, int(st.session_state.y_val)+30, :])
@@ -258,98 +254,3 @@ with col2:
     #                 st.session_state.x_val = str(row["center_x"])
     #                 st.session_state.z_val = str(row["center_y"])
     #
-
-# if st.sidebar.button('Go to region centre'):
-#     temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
-#     st.session_state.y_val = str(temp.iloc[0]['slice_number'])
-
-# 'You selected atlas: ', option_atlas
-# 'You selected orientation: ', option_orientation
-# 'You selected regions: ', option_orientation
-
-
-#
-
-#
-#
-
-# col1, col2 = st.columns(2)
-# with col1:
-#     if option_orientation=='Coronal':
-#         if st.button('Next'):
-#             st.session_state.y_val = str(int(st.session_state.y_val)+10)
-#         if st.button('Prev'):
-#             st.session_state.y_val = str(int(st.session_state.y_val)-10)
-#         #st.sidebar.button('Go to region centre')
-#
-#         image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
-#         st.image(image)
-#
-#     if option_orientation=='Sagital':
-#         image = Image.open('horizontal_white_neuropedia/'+option_highligt+'.tif')
-#         st.image(image)
-#         st.image(mri[:, :, int(x)])
-# with col2:
-#     if option_orientation == 'Coronal':
-#         # Create a canvas component
-#         canvas_result = st_canvas(
-#             stroke_width=0,
-#             stroke_color="black",
-#             background_image=im_plot(mri[:, int(st.session_state.y_val), :]),
-#             height=297,
-#             width=455,
-#             drawing_mode="circle",
-#             display_toolbar=False,
-#             key="center_circle_app"
-#         )
-#         if canvas_result.json_data is not None:
-#             df = pd.json_normalize(canvas_result.json_data["objects"])
-#             if len(df) != 0:
-#                 df["center_x"] = df["left"] + df["radius"] * np.cos(
-#                     df["angle"] * np.pi / 180
-#                 )
-#                 df["center_y"] = df["top"] + df["radius"] * np.sin(
-#                     df["angle"] * np.pi / 180
-#                 )
-#
-#                 st.subheader("Click coordinate")
-#                 for index, row in df.iterrows():
-#                     if index + 1 == len(df):
-#                         st.markdown(
-#                             # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-#                             f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-#                         )
-#
-#                         st.session_state.x_val = str(row["center_x"])
-#                         st.session_state.z_val = str(row["center_y"])
-#
-#     #st.image(ccfv3[:,int(st.session_state.y_val),:])
-#     if option_orientation == 'Sagital':
-#         st.image(lsfm[:, :, int(x)])
-#         st.image(ccfv3[:, :, int(x)])
-#
-#
-
-
-
-
-# 'Starting a long computation...'
-# # Add a placeholder
-# latest_iteration = st.empty()
-# bar = st.progress(0)
-#
-# for i in range(100):
-#   # Update the progress bar with each iteration.
-#   latest_iteration.text(f'Iteration {i+1}')
-#   bar.progress(i + 1)
-#   time.sleep(0.1)
-#
-# '...and now we\'re done!'
-
-# cache
-# If this is the first time Streamlit has seen these four components with these exact values and in this exact
-# combination and order, it runs the function and stores the result in a local cache. Then, next time the cached function is called,
-# if none of these components changed, Streamlit will skip executing the function altogether and, instead,
-# return the output previously stored in the cache.
-
-
