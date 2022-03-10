@@ -189,6 +189,8 @@ df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 
 # st.sidebar.header('Explore')
 
+st.session_state
+
 # Create a canvas component
 col1, col2 = st.columns(2)
 with col1:
