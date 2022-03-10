@@ -71,7 +71,7 @@ def im_plot_coord(im, x, y):
     fig, ax = plt.subplots()
     ax.imshow(im, cmap='gray')
 
-    rect = patches.Rectangle((x, y), 5, 5, linewidth=1, edgecolor='r', facecolor='r')
+    rect = patches.Rectangle((int(float(x)), int(float(y))), 5, 5, linewidth=1, edgecolor='r', facecolor='r')
     ax.add_patch(rect)
 
     ax.axis('off')
