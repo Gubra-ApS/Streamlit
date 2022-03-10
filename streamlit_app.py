@@ -64,14 +64,14 @@ def im_plot_mip(im, line_coord):
     return pil_im
 
 
-def im_plot_coord(im):
+def im_plot_coord(im, x, y):
     # px = 1 / plt.rcParams['figure.dpi']
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
     #fig = plt.figure(figsize=(13.9, 10))
     fig, ax = plt.subplots()
     ax.imshow(im, cmap='gray')
 
-    rect = patches.Rectangle((50, 50), 5, 5, linewidth=1, edgecolor='r', facecolor='r')
+    rect = patches.Rectangle((x, y), 5, 5, linewidth=1, edgecolor='r', facecolor='r')
     ax.add_patch(rect)
 
     ax.axis('off')
@@ -237,7 +237,7 @@ with col2:
     # plot LSFM
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     im_lsfm = downscale_local_mean(im_lsfm,(2,2))
-    im_lsfm_pil = im_plot_coord(im_lsfm)
+    im_lsfm_pil = im_plot_coord(im_lsfm, st.session_state.x_val, st.session_state.z_val)
     st.image(im_lsfm_pil)
 
     if st.button('Sync to LSFM'):
@@ -247,13 +247,13 @@ with col2:
     # plot MRI
     im_mri = np.copy(mri[:, int(float(st.session_state.y_val))+30, :])
     im_mri = downscale_local_mean(im_mri,(2,2))
-    im_mri_pil = im_plot_coord(im_mri)
+    im_mri_pil = im_plot_coord(im_mri, st.session_state.x_val, st.session_state.z_val)
     st.image(im_mri_pil)
 
     # plot CCFv3
     im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val))+30, :])
     im_ccfv3 = downscale_local_mean(im_ccfv3,(2,2))
-    im_ccfv3_pil = im_plot_coord(im_ccfv3)
+    im_ccfv3_pil = im_plot_coord(im_ccfv3, st.session_state.x_val, st.session_state.z_val)
     st.image(im_ccfv3_pil)
 
     # if st.button('Got to coordinate'):
