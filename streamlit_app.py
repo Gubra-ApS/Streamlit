@@ -200,10 +200,10 @@ with st.container():
                                   on_change=ste_coord_sess)
 
 # Create a canvas component
-st.header('Coordinate viewer')
-st.markdown(
-    f'<h3 style="color:#000000;font-size:22px;">{st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}</h3>',
-    unsafe_allow_html=True)
+st.subheader(f'Current coordinate: {st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}')
+# st.markdown(
+#     f'<h3 style="color:#000000;font-size:22px;">{st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}</h3>',
+#     unsafe_allow_html=True)
 # st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 
 col1, col2 = st.columns(2)
