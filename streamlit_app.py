@@ -47,7 +47,7 @@ def y_sess_update():
     st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 340 * 512) - 20))
 
 def y_sess_update_select():
-    2+2
+    a=1
     # Change y_coord to region center
     # st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 340 * 512) - 20))
 
