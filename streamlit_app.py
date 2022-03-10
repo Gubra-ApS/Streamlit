@@ -207,9 +207,21 @@ with col2:
 
     # plot LSFM
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    im_lsfm = downscale_local_mean(im_click_pre,(2,2))
-    im_lsfm = im_plot(im_click_pre)
-    st.image(im_lsfm)
+    im_lsfm = downscale_local_mean(im_lsfm,(2,2))
+    im_lsfm_pil = im_plot(im_lsfm)
+    st.image(im_lsfm_pil)
+
+    # plot MRI
+    im_mri = np.copy(mri[:, int(float(st.session_state.y_val))+30, :])
+    im_mri = downscale_local_mean(im_mri,(2,2))
+    im_mri_pil = im_plot(im_mri)
+    st.image(im_mri_pil)
+
+    # plot CCFv3
+    im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val))+30, :])
+    im_ccfv3 = downscale_local_mean(im_ccfv3,(2,2))
+    im_ccfv3_pil = im_plot(im_ccfv3)
+    st.image(im_ccfv3_pil)
 
     # if st.button('Got to coordinate'):
     #     # parse text string and set sesseio state vars
