@@ -3,7 +3,7 @@ body {
 }
 
 div[data-testid="stHorizontalBlock"] > div:last-of-type {
-  background-color: black;
+  border-left-style: solid;
 }
 
 div[data-testid="stImage"] {
