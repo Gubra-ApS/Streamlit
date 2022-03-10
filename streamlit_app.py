@@ -70,7 +70,7 @@ def im_plot_pos(width, pos):
     pos_arr = np.ones((20,width),'uint8')
     pos_arr[:,width-5:width+5] = 0
     fig, ax = plt.subplots()
-    ax.imshow(np, cmap='gray')
+    ax.imshow(pos_arr, cmap='gray')
 
     # rect = patches.Rectangle((0, line_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
     # ax.add_patch(rect)
