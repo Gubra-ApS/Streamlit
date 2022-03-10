@@ -165,7 +165,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.header('Coordinate picker')
     ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '60; 200; 80')
-    if st.button('Got to coordinate'):
+    if ste_coord:
         # parse text string and set sesseio state vars
         st.session_state.y_val = ste_coord.split(';')[1].strip()
         st.session_state.x_val = ste_coord.split(';')[0].strip()
