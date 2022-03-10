@@ -112,8 +112,8 @@ def y_sess_update():
 
 
 # create session variables
-if 'latest_control' not in st.session_state:
-    st.session_state['latest_control'] = 'text_field'
+if 'mip_control_counter' not in st.session_state:
+    st.session_state['mip_control_counter'] = 0
 
 # lsfm
 if 'y_val' not in st.session_state:
@@ -214,7 +214,9 @@ with col1:
                     #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
-                    st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
+                    if len(df) > st.session_state['mip_control_counter']:
+                        st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
+                        st.session_state['mip_control_counter'] = st.session_state['mip_control_counter'] + 1
 
     # widget = st.empty()
 
