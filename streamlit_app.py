@@ -142,8 +142,8 @@ with col1:
         stroke_width=0,
         stroke_color="black",
         background_image=im_mip,
-        height=145*2,
-        width=199*2,
+        height=200,
+        width=300,
         drawing_mode="circle",
         display_toolbar=False,
         key="mip"
