@@ -164,6 +164,11 @@ df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 col1, col2 = st.columns(2)
 with col1:
     st.header('Coordinate picker')
+    ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '0; 0; 0')
+    if st.button('Got to coordinate'):
+        # parse text string and set sesseio state vars
+        st.write('set coords')
+
     option_highligt = st.selectbox(
         'Current highlight region:',
         df_highligt['acronym'])
@@ -243,7 +248,6 @@ with col1:
                     st.session_state.x_val = str(row["center_x"])
                     st.session_state.z_val = str(row["center_y"])
 
-    ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '0; 0; 0')
 
 with col2:
     #st.header('Coordinate viewer')
@@ -278,10 +282,6 @@ with col2:
     im_ccfv3 = downscale_local_mean(im_ccfv3,(2,2))
     im_ccfv3_pil = im_plot_coord(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
     st.image(im_ccfv3_pil)
-
-    if st.button('Got to coordinate'):
-        # parse text string and set sesseio state vars
-        st.write('set coords')
 
 
     #
