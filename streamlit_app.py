@@ -69,9 +69,9 @@ def im_plot_coord(im):
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
     #fig = plt.figure(figsize=(13.9, 10))
     fig, ax = plt.subplots()
-    ax.imshow(im)
+    ax.imshow(im, cmap='gray')
 
-    rect = patches.Rectangle((50, 50), 20, 20, linewidth=1, edgecolor='r', facecolor='r')
+    rect = patches.Rectangle((50, 50), 5, 5, linewidth=1, edgecolor='r', facecolor='r')
     ax.add_patch(rect)
 
     ax.axis('off')
