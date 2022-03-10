@@ -197,9 +197,8 @@ with st.container():
 
 # Create a canvas component
 st.header('Coordinate viewer')
-st.markdown(f'<h1 style="color:#aaaaaa;font-size:32px;">{"Coordinate viewer"}</h1>', unsafe_allow_html=True)
 st.markdown(
-    f'<h3 style="color:#aaaaaa;font-size:22px;">{st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}</h3>',
+    f'<h3 style="color:#000000;font-size:22px;">{st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}</h3>',
     unsafe_allow_html=True)
 # st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 
