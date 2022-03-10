@@ -209,7 +209,8 @@ with col1:
     ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '0; 0; 0')
 
 with col2:
-    st.header('Coordinate viewer')
+    #st.header('Coordinate viewer')
+    st.markdown(f'<h1 style="color:#33ff33;font-size:24px;">{"Coordinate viewer”"}</h1>', unsafe_allow_html=True)
     st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 
     # plot LSFM
