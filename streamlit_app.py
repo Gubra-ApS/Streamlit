@@ -182,8 +182,8 @@ with col1:
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
                     if len(df) > st.session_state['cor_control_counter']:
-                        st.session_state.x_val = str(row["center_x"])
-                        st.session_state.z_val = str(row["center_y"])
+                        st.session_state.x_val = str((float(row["center_x"]) / 246 * 369)+20)
+                        st.session_state.z_val = str((float(row["center_y"]) / 174 * 268)+2)
                         st.session_state['cor_control_counter'] = len(df)
 
 
