@@ -86,7 +86,7 @@ df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 col1, col2 = st.columns(2)
 with col1:
     st.header('Coordinate picker')
-    st.write(st.session_state.y_val)
+
     ### TEXT FIELD INPUT
     ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):',
                               '60; 200; 80',
@@ -94,13 +94,13 @@ with col1:
                               on_change=ste_coord_sess)
 
 
-    st.write(st.session_state.y_val)
     ### SELECT BOX WITH ATLAS REGIONS
     option_highligt = st.selectbox(
         'Current highlight region:',
         df_highligt['acronym'],
         key='y_select_s',
         on_change=y_sess_update_select)
+
 
     ### MIP DRAWABLE CANVAS
     st.write('Click images to select coordinate..')
