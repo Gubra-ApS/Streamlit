@@ -217,6 +217,10 @@ with col2:
     im_lsfm_pil = im_plot(im_lsfm)
     st.image(im_lsfm_pil)
 
+    if st.button('Sync to LSFM'):
+        # parse text string and set sesseio state vars
+        st.write('Syncing')
+
     # plot MRI
     im_mri = np.copy(mri[:, int(float(st.session_state.y_val))+30, :])
     im_mri = downscale_local_mean(im_mri,(2,2))
@@ -232,9 +236,7 @@ with col2:
     # if st.button('Got to coordinate'):
     #     # parse text string and set sesseio state vars
     #     st.write(ste_coord)
-    #     # st.session_state.y_val = y
-    #     # st.session_state.x_val = x
-    #     # st.session_state.z_val = z
+
     #
 
 
