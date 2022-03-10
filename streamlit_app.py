@@ -237,7 +237,7 @@ with col1:
                     st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
 
     im_pos = im_plot_pos(300, st.session_state.y_val)
-    st.image(im_pos)
+    st.image(im_pos, height=20)
     # if st.button('Next'):
     #     st.session_state.y_val = str(int(st.session_state.y_val)+5)
     # if st.button('Prev'):
