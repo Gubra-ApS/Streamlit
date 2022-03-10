@@ -49,6 +49,10 @@ def y_sess_update():
 def y_sess_update_select():
     st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 300 * 512) - 20))
 
+def ste_coord_sess():
+    st.session_state.y_val = st.session_state.ste_coord_s.split(';')[1].strip()
+    st.session_state.x_val = st.session_state.ste_coord_s.split(';')[0].strip()
+    st.session_state.z_val = st.session_state.ste_coord_s.split(';')[2].strip()
 
 
 ##### READ DATA
@@ -84,12 +88,11 @@ with col1:
     st.header('Coordinate picker')
     st.write(st.session_state.y_val)
     ### TEXT FIELD INPUT
-    ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '60; 200; 80')
-    if ste_coord:
-        # parse text string and set sesseio state vars
-        st.session_state.y_val = ste_coord.split(';')[1].strip()
-        st.session_state.x_val = ste_coord.split(';')[0].strip()
-        st.session_state.z_val = ste_coord.split(';')[2].strip()
+    ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):',
+                              '60; 200; 80',
+                              key="ste_coord_s",
+                              on_change=ste_coord_sess)
+
 
     st.write(st.session_state.y_val)
     ### SELECT BOX WITH ATLAS REGIONS
