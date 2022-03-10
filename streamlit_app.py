@@ -124,8 +124,6 @@ with col1:
     )
     if canvas_result_mip.json_data is not None:
         df = pd.json_normalize(canvas_result_mip.json_data["objects"])
-        st.write(len(df))
-        st.write(st.session_state['mip_control_counter'])
         if len(df) != 0:
             df["center_x"] = df["left"] + df["radius"] * np.cos(
                 df["angle"] * np.pi / 180
