@@ -167,7 +167,9 @@ with col1:
     ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '0; 0; 0')
     if st.button('Got to coordinate'):
         # parse text string and set sesseio state vars
-        st.write('set coords')
+        st.session_state.y_val = ste_coord.split(';')[1].strip()
+        st.session_state.x_val = ste_coord.split(';')[0].strip()
+        st.session_state.z_val = ste_coord.split(';')[2].strip()
 
     option_highligt = st.selectbox(
         'Current highlight region:',
