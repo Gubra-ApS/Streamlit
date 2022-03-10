@@ -1,20 +1,13 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import time
 import SimpleITK as sitk
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
-import json
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-import io
-import plotly.express as px
-import plotly.graph_objects as go
 from skimage.transform import downscale_local_mean
 import helpers
 
-
+##### CSS STYLING
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
@@ -22,14 +15,7 @@ def local_css(file_name):
 local_css("style.css")
 
 
-
-def y_sess_update():
-    st.session_state.y_val = str(int((float(st.session_state.y_slider_s)/ 300 * 512) - 20))
-    canvas_result_mip.json_data = None
-
-
-
-# create session variables
+##### CREATE SESSION VARIABLES
 if 'mip_control_counter' not in st.session_state:
     st.session_state['mip_control_counter'] = 0
 
@@ -57,7 +43,15 @@ if 'x_val_ccfv3' not in st.session_state:
 if 'z_val_ccfv3' not in st.session_state:
     st.session_state['z_val_ccfv3'] = '80'
 
+def y_sess_update():
+    st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 300 * 512) - 20))
 
+def y_sess_update_select():
+    st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 300 * 512) - 20))
+
+
+
+##### READ DATA
 @st.cache  # 👈 This function will be cached
 def read_atlases(read):
     # load atlas files only once
@@ -77,16 +71,19 @@ def read_atlases(read):
 # read atlas volume (only at first app load)
 lsfm, mri, ccfv3, lsfm_ano = read_atlases(1)
 
-
+# read atlas region info
 df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 
 
+##### BUILD APP
 st.session_state
 
 # Create a canvas component
 col1, col2 = st.columns(2)
 with col1:
     st.header('Coordinate picker')
+
+    ### TEXT FIELD INPUT
     ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '60; 200; 80')
     if ste_coord:
         # parse text string and set sesseio state vars
@@ -94,10 +91,14 @@ with col1:
         st.session_state.x_val = ste_coord.split(';')[0].strip()
         st.session_state.z_val = ste_coord.split(';')[2].strip()
 
+    ### SELECT BOX WITH ATLAS REGIONS
     option_highligt = st.selectbox(
         'Current highlight region:',
-        df_highligt['acronym'])
+        df_highligt['acronym'],
+        key='y_select_s',
+        on_change=y_sess_update_select)
 
+    ### MIP DRAWABLE CANVAS
     st.write('Click images to select coordinate..')
     image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
     pix = np.array(image)
@@ -117,6 +118,7 @@ with col1:
     )
     if canvas_result_mip.json_data is not None:
         df = pd.json_normalize(canvas_result_mip.json_data["objects"])
+        st.write(len(df))
         if len(df) != 0:
             df["center_x"] = df["left"] + df["radius"] * np.cos(
                 df["angle"] * np.pi / 180
@@ -136,51 +138,41 @@ with col1:
                         st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
                         st.session_state['mip_control_counter'] = len(df)
 
-    # widget = st.empty()
-
     slider_y = st.slider('Position', 0, 300, int((float(st.session_state.y_val)-20) / 512 * 300), key='y_slider_s', on_change=y_sess_update)
-
-    # im_pos = im_plot_pos(300, st.session_state.y_val)
-    # st.image(im_pos)
-
-    # if st.button('Next'):
-    #     st.session_state.y_val = str(int(st.session_state.y_val)+5)
-    # if st.button('Prev'):
-    #     st.session_state.y_val = str(int(st.session_state.y_val)-5)
-
-    # template
-    im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    im_click_pre = downscale_local_mean(im_click_pre,(2,2))
-    im_click = helpers.im_plot(im_click_pre)
-    canvas_result = st_canvas(
-        stroke_width=0,
-        stroke_color="black",
-        background_image=im_click,
-        height=im_click_pre.shape[0],
-        width=im_click_pre.shape[1],
-        drawing_mode="circle",
-        display_toolbar=False,
-        key="center_circle_app"
-    )
-    if canvas_result.json_data is not None:
-        df = pd.json_normalize(canvas_result.json_data["objects"])
-        if len(df) != 0:
-            df["center_x"] = df["left"] + df["radius"] * np.cos(
-                df["angle"] * np.pi / 180
-            )
-            df["center_y"] = df["top"] + df["radius"] * np.sin(
-                df["angle"] * np.pi / 180
-            )
-
-            # st.subheader("Click coordinate")
-            for index, row in df.iterrows():
-                if index + 1 == len(df):
-                    # st.markdown(
-                    #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                    #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                    # )
-                    st.session_state.x_val = str(row["center_x"])
-                    st.session_state.z_val = str(row["center_y"])
+    #
+    # # template
+    # im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
+    # im_click_pre = downscale_local_mean(im_click_pre,(2,2))
+    # im_click = helpers.im_plot(im_click_pre)
+    # canvas_result = st_canvas(
+    #     stroke_width=0,
+    #     stroke_color="black",
+    #     background_image=im_click,
+    #     height=im_click_pre.shape[0],
+    #     width=im_click_pre.shape[1],
+    #     drawing_mode="circle",
+    #     display_toolbar=False,
+    #     key="center_circle_app"
+    # )
+    # if canvas_result.json_data is not None:
+    #     df = pd.json_normalize(canvas_result.json_data["objects"])
+    #     if len(df) != 0:
+    #         df["center_x"] = df["left"] + df["radius"] * np.cos(
+    #             df["angle"] * np.pi / 180
+    #         )
+    #         df["center_y"] = df["top"] + df["radius"] * np.sin(
+    #             df["angle"] * np.pi / 180
+    #         )
+    #
+    #         # st.subheader("Click coordinate")
+    #         for index, row in df.iterrows():
+    #             if index + 1 == len(df):
+    #                 # st.markdown(
+    #                 #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+    #                 #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+    #                 # )
+    #                 st.session_state.x_val = str(row["center_x"])
+    #                 st.session_state.z_val = str(row["center_y"])
 
 
 with col2:
