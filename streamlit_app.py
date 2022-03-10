@@ -85,6 +85,9 @@ def im_plot_coord(im, x, y):
 
 
 # create session variables
+if 'latest_control' not in st.session_state:
+    st.session_state['latest_control'] = 'text_field'
+
 # lsfm
 if 'y_val' not in st.session_state:
     st.session_state['y_val'] = '200'
@@ -170,7 +173,6 @@ with col1:
         st.session_state.y_val = ste_coord.split(';')[1].strip()
         st.session_state.x_val = ste_coord.split(';')[0].strip()
         st.session_state.z_val = ste_coord.split(';')[2].strip()
-        st.write(st.session_state.y_val)
 
     option_highligt = st.selectbox(
         'Current highlight region:',
