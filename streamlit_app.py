@@ -97,6 +97,7 @@ with st.container():
         st.write('Col1a')
     with col2a:
         st.write('Col2a')
+        st.write('Col2a line 2')
 
 # Create a canvas component
 col1, col2 = st.columns(2)
