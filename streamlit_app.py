@@ -216,7 +216,7 @@ with col1:
                     # )
                     if len(df) > st.session_state['mip_control_counter']:
                         st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
-                        st.session_state['mip_control_counter'] = st.session_state['mip_control_counter'] + 1
+                        st.session_state['mip_control_counter'] = len(df)
 
     # widget = st.empty()
 
