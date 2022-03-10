@@ -237,7 +237,8 @@ with col2:
     # plot LSFM
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     im_lsfm = downscale_local_mean(im_lsfm,(2,2))
-    im_lsfm_pil = im_plot_coord(im_lsfm, st.session_state.x_val, st.session_state.z_val)
+    #im_lsfm_pil = im_plot_coord(im_lsfm, st.session_state.x_val, st.session_state.z_val)
+    im_lsfm_pil = im_plot_coord(im_lsfm, 50, 50)
     st.image(im_lsfm_pil)
 
     if st.button('Sync to LSFM'):
