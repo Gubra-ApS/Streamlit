@@ -153,7 +153,7 @@ with col1:
     # template coronal
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     st.write(im_click_pre.shape)
-    im_click_pre = resize(im_click_pre,(174,246))
+    im_click_pre = resize(im_click_pre,(179,246))
     im_click = helpers.im_plot(im_click_pre)
     canvas_result = st_canvas(
         stroke_width=0,
@@ -183,8 +183,8 @@ with col1:
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
                     if len(df) > st.session_state['cor_control_counter']:
-                        st.session_state.x_val = str(int((float(row["center_x"]) / 246 * 369)+20))
-                        st.session_state.z_val = str(int((float(row["center_y"]) / 174 * 268)+2))
+                        st.session_state.x_val = str(int((float(row["center_x"]) / 246 * 369)))
+                        st.session_state.z_val = str(int((float(row["center_y"]) / 179 * 268)))
                         st.session_state['cor_control_counter'] = len(df)
 
 
