@@ -259,7 +259,13 @@ with col2:
 
     if st.button('Sync to LSFM'):
         # parse text string and set sesseio state vars
-        st.write('Syncing')
+        st.session_state.y_val_mri = st.session_state.y_val
+        st.session_state.x_val_mri = st.session_state.x_val
+        st.session_state.z_val_mri = st.session_state.z_val
+
+        st.session_state.y_val_ccfv3 = st.session_state.y_val
+        st.session_state.x_val_ccfv3 = st.session_state.x_val
+        st.session_state.z_val_ccfv3 = st.session_state.z_val
 
     # plot MRI
     im_mri = np.copy(mri[:, int(float(st.session_state.y_val_mri))+30, :])
@@ -275,13 +281,8 @@ with col2:
 
     if st.button('Got to coordinate'):
         # parse text string and set sesseio state vars
-        st.session_state.y_val_mri = st.session_state.y_val
-        st.session_state.x_val_mri = st.session_state.x_val
-        st.session_state.z_val_mri = st.session_state.z_val
+        st.write('set coords')
 
-        st.session_state.y_val_ccfv3 = st.session_state.y_val
-        st.session_state.x_val_ccfv3 = st.session_state.x_val
-        st.session_state.z_val_ccfv3 = st.session_state.z_val
 
     #
 
