@@ -168,12 +168,12 @@ with col2:
     st.header('Stereotaxic coordinate')
     ste_coord = st.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
 
-    if st.button('Got to coordinate'):
-        # parse text string and set sesseio state vars
-        st.write(ste_coord)
-        # st.session_state.y_val = y
-        # st.session_state.x_val = x
-        # st.session_state.z_val = z
+    # if st.button('Got to coordinate'):
+    #     # parse text string and set sesseio state vars
+    #     st.write(ste_coord)
+    #     # st.session_state.y_val = y
+    #     # st.session_state.x_val = x
+    #     # st.session_state.z_val = z
     #
 
     # template
