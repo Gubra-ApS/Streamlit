@@ -105,6 +105,10 @@ def im_plot_coord(im, x, y):
 
     return pil_im
 
+def y_sess_update():
+    st.session_state.y_val = str(st.session_state.y_slider_s)
+
+
 
 # create session variables
 if 'latest_control' not in st.session_state:
@@ -238,7 +242,7 @@ with col1:
 
     # widget = st.empty()
 
-    slider_y = st.slider('Position', 0, 300, int((float(st.session_state.y_val)-20) / 512 * 300))
+    slider_y = st.slider('Position', 0, 300, int((float(st.session_state.y_val)-20) / 512 * 300), key='y_slider_s', on_change=y_sess_update)
 
     # im_pos = im_plot_pos(300, st.session_state.y_val)
     # st.image(im_pos)
