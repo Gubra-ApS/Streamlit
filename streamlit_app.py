@@ -178,7 +178,7 @@ with col2:
 
     # template
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    im_click_pre = downscale_local_mean(im_click_pre,(2,2))
+    # im_click_pre = downscale_local_mean(im_click_pre,(2,2))
     im_click = im_plot(im_click_pre)
     canvas_result = st_canvas(
         stroke_width=0,
