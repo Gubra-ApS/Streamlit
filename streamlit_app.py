@@ -91,7 +91,7 @@ with col1:
 
     ### TEXT FIELD INPUT
     ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):',
-                              '60; 200; 80',
+                              f'{st.session_state.x_val}; {st.session_state.y_val}; {st.session_state.z_val}',
                               key="ste_coord_s",
                               on_change=ste_coord_sess)
 
@@ -144,7 +144,7 @@ with col1:
                         st.session_state['mip_control_counter'] = len(df)
 
     slider_y = st.slider('Position', 0, 340, int((float(st.session_state.y_val) / 512 * 340)+12),
-                         format='%00d',
+                         format='%g',
                          key='y_slider_s',
                          on_change=y_sess_update)
     #
