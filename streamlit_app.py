@@ -164,21 +164,9 @@ with col1:
 
     y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
 
-with col2:
-    st.header('Stereotaxic coordinate')
-    ste_coord = st.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
-
-    # if st.button('Got to coordinate'):
-    #     # parse text string and set sesseio state vars
-    #     st.write(ste_coord)
-    #     # st.session_state.y_val = y
-    #     # st.session_state.x_val = x
-    #     # st.session_state.z_val = z
-    #
-
     # template
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    # im_click_pre = downscale_local_mean(im_click_pre,(2,2))
+    im_click_pre = downscale_local_mean(im_click_pre,(2,2))
     im_click = im_plot(im_click_pre)
     canvas_result = st_canvas(
         stroke_width=0,
@@ -209,6 +197,28 @@ with col2:
                     # )
                     st.session_state.x_val = str(row["center_x"])
                     st.session_state.z_val = str(row["center_y"])
+
+    st.header('Stereotaxic coordinate')
+    ste_coord = st.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
+
+with col2:
+    st.header('Selected coordinate [' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
+
+    # plot LSFM
+    im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
+    im_lsfm = downscale_local_mean(im_click_pre,(2,2))
+    im_lsfm = im_plot(im_click_pre)
+    st.image(im_lsfm)
+
+    # if st.button('Got to coordinate'):
+    #     # parse text string and set sesseio state vars
+    #     st.write(ste_coord)
+    #     # st.session_state.y_val = y
+    #     # st.session_state.x_val = x
+    #     # st.session_state.z_val = z
+    #
+
+
 
 
     # # ano
@@ -257,7 +267,6 @@ with col2:
 
 
 #
-st.header('Stereotxic coordinate [' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 
 #
 #
