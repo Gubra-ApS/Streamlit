@@ -158,7 +158,11 @@ with st.container():
             df_cor['plates'])
 
         # template coronal
-        im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val)) + 30, :])
+        if option_coronal == 'Template':
+            im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val)) + 30, :])
+        else:
+            im_click_pre = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
+
         im_click_pre = resize(im_click_pre, (179, 246))
         im_click = helpers.im_plot(im_click_pre)
         canvas_result = st_canvas(
