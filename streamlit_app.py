@@ -13,8 +13,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 from skimage.transform import downscale_local_mean
 
-st.set_page_config(layout='wide')
-st.title("Perens atlas")
 
 def local_css(file_name):
     with open(file_name) as f:
