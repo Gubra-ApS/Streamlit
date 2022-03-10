@@ -204,7 +204,6 @@ with col1:
                     st.session_state.x_val = str(row["center_x"])
                     st.session_state.z_val = str(row["center_y"])
 
-    st.header('Type coordinate')
     ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '0; 0; 0')
 
 with col2:
