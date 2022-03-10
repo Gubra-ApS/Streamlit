@@ -3,5 +3,5 @@ body {
 }
 
 div[data-testid="stHorizontalBlock"] > div:first-of-type {
-  background-color: red;
+  background-color: grey;
 }
