@@ -186,6 +186,7 @@ with col1:
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
                     st.session_state.y_val = str(int(row["center_x"] / 199 * 512) + 5)
+                    st.write(str(int(row["center_x"] / 199 * 512) + 5))
 
     if st.button('Next'):
         st.session_state.y_val = str(int(st.session_state.y_val)+5)
