@@ -143,7 +143,7 @@ with st.container():
         #                      key='y_slider_s',
         #                      on_change=y_sess_update)
 
-        slider_y = st.slider('Click images to select coordinate..', 0, 512, int(float(st.session_state.y_val)),
+        slider_y = st.slider('Click image to select y coordinate..', 0, 512, int(float(st.session_state.y_val)),
                              format='%g',
                              key='y_slider_s',
                              on_change=y_sess_update)
@@ -194,6 +194,7 @@ with st.container():
                             st.session_state['cor_control_counter'] = len(df)
 
         ### TEXT FIELD INPUT
+        st.write('Click image to select x, z coordinates..')
         ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):',
                                   f'{st.session_state.x_val}; {st.session_state.y_val}; {st.session_state.z_val}',
                                   key="ste_coord_s",
