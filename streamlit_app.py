@@ -102,7 +102,7 @@ with col1:
 
 
     ### MIP DRAWABLE CANVAS
-    st.write('Click images to select coordinate..')
+    #st.write('Click images to select coordinate..')
     image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
     pix = np.array(image)
     pix = np.swapaxes(pix, 0, 1)
@@ -145,7 +145,7 @@ with col1:
     #                      key='y_slider_s',
     #                      on_change=y_sess_update)
 
-    slider_y = st.slider('Position', 0, 512, int(float(st.session_state.y_val)),
+    slider_y = st.slider('Click images to select coordinate..', 0, 512, int(float(st.session_state.y_val)),
                          format='%g',
                          key='y_slider_s',
                          on_change=y_sess_update)
