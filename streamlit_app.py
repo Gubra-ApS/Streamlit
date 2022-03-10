@@ -178,7 +178,7 @@ with col1:
         'Current highlight region:',
         df_highligt['acronym'])
 
-    st.write('Click me')
+    st.write('Click images to select coordinate..')
     image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
     pix = np.array(image)
     pix = np.swapaxes(pix, 0, 1)
