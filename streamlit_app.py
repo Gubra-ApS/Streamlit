@@ -211,8 +211,8 @@ with col1:
 with col2:
     #st.header('Coordinate viewer')
     st.markdown(f'<h1 style="color:#aaaaaa;font-size:32px;">{"Coordinate viewer"}</h1>', unsafe_allow_html=True)
-    st.markdown(f'<h2 style="color:#aaaaaa;font-size:32px;">{st.session_state.y_val}</h2>', unsafe_allow_html=True)
-    st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
+    st.markdown(f'<h3 style="color:#aaaaaa;font-size:14px;">{st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}</h3>', unsafe_allow_html=True)
+    # st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 
     # plot LSFM
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
