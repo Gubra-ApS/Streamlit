@@ -68,7 +68,7 @@ def im_plot_pos(width, pos):
     # fig = plt.figure(figsize=(int(455*px), int(297*px)))
     #fig = plt.figure(figsize=(13.9, 10))
     pos_arr = np.ones((20,width),'uint8')
-    pos = int(float(pos))
+    pos = int(float(pos) / 512 * 300)
     pos_arr[:,pos] = 0
     fig, ax = plt.subplots()
     ax.imshow(pos_arr, cmap='gray')
