@@ -185,7 +185,7 @@ with col1:
                     #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
-                    st.session_state.y_val = str(int(row["center_y"] / 199 * 512) + 25)
+                    st.session_state.y_val = str(int(row["center_x"] / 199 * 512) + 25)
 
     if st.button('Next'):
         st.session_state.y_val = str(int(st.session_state.y_val)+5)
