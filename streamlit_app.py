@@ -107,6 +107,7 @@ def im_plot_coord(im, x, y):
 
 def y_sess_update():
     st.session_state.y_val = str(int((float(st.session_state.y_slider_s)/ 300 * 512) - 20))
+    canvas_result_mip.json_data = None
 
 
 
@@ -159,35 +160,8 @@ def read_atlases(read):
 lsfm, mri, ccfv3, lsfm_ano = read_atlases(1)
 
 
-# ## Setup drop down selection menus
-# df_options = pd.DataFrame({
-#     'orientaion': ['Coronal', 'Sagital']
-#     })
-
-# df_highligt = pd.DataFrame({
-#     'regions': ['hippo', 'cortex', 'ap', 'osv'],
-#     })
-
 df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 
-# option_atlas = st.sidebar.selectbox(
-#     'Navigate in:',
-#      df_options['atlas'])
-
-# st.sidebar.header('Select orientation')
-# option_orientation = st.sidebar.selectbox(
-#     'Slice orientation:',
-#      df_options['orientaion'])
-
-
-
-# temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
-# st.session_state.y_val = str(temp.iloc[0]['slice_number'])
-
-
-
-
-# st.sidebar.header('Explore')
 
 st.session_state
 
