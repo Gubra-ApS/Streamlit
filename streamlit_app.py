@@ -75,14 +75,14 @@ lsfm, mri, ccfv3, lsfm_ano = read_atlases(1)
 df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 
 
-##### BUILD APP
-st.session_state
+# ##### BUILD APP
+# st.session_state
 
 # Create a canvas component
 col1, col2 = st.columns(2)
 with col1:
     st.header('Coordinate picker')
-
+    st.write(st.session_state.y_val)
     ### TEXT FIELD INPUT
     ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '60; 200; 80')
     if ste_coord:
@@ -91,6 +91,7 @@ with col1:
         st.session_state.x_val = ste_coord.split(';')[0].strip()
         st.session_state.z_val = ste_coord.split(';')[2].strip()
 
+    st.write(st.session_state.y_val)
     ### SELECT BOX WITH ATLAS REGIONS
     option_highligt = st.selectbox(
         'Current highlight region:',
