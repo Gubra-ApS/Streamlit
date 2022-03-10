@@ -44,7 +44,8 @@ if 'z_val_ccfv3' not in st.session_state:
     st.session_state['z_val_ccfv3'] = '80'
 
 def y_sess_update():
-    st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 340 * 512) - 20))
+    #st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 340 * 512) - 20))
+    st.session_state.y_val = str(st.session_state.y_slider_s)
 
 def y_sess_update_select():
     a=1
@@ -136,7 +137,12 @@ with col1:
                         st.session_state.y_val = str(int(row["center_x"] / 340 * 512) - 20)
                         st.session_state['mip_control_counter'] = len(df)
 
-    slider_y = st.slider('Position', 0, 340, int((float(st.session_state.y_val) / 512 * 340)+12),
+    # slider_y = st.slider('Position', 0, 340, int((float(st.session_state.y_val) / 512 * 340)+12),
+    #                      format='%g',
+    #                      key='y_slider_s',
+    #                      on_change=y_sess_update)
+
+    slider_y = st.slider('Position', 0, 512, int(float(st.session_state.y_val)),
                          format='%g',
                          key='y_slider_s',
                          on_change=y_sess_update)
