@@ -13,14 +13,14 @@ import plotly.express as px
 import plotly.graph_objects as go
 from skimage.transform import downscale_local_mean
 
+st.set_page_config(layout='wide')
+st.title("Perens atlas")
+
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 
 local_css("style.css")
-
-st.set_page_config(layout='wide')
-st.title("Perens atlas")
 
 def fig2img(fig):
     """Convert a Matplotlib figure to a PIL Image and return it"""
