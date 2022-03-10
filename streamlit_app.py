@@ -144,7 +144,7 @@ with col1:
                         st.session_state['mip_control_counter'] = len(df)
 
     slider_y = st.slider('Position', 0, 340, int((float(st.session_state.y_val) / 512 * 340)+12),
-                         format='%g',
+                         format='%02d',
                          key='y_slider_s',
                          on_change=y_sess_update)
     #
