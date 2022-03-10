@@ -106,7 +106,7 @@ def im_plot_coord(im, x, y):
     return pil_im
 
 def y_sess_update():
-    st.session_state.y_val = str(st.session_state.y_slider_s)
+    st.session_state.y_val = str(int((float(st.session_state.y_slider_s)/ 300 * 512) - 20))
 
 
 
