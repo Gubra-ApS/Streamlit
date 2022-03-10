@@ -19,6 +19,9 @@ local_css("style.css")
 if 'mip_control_counter' not in st.session_state:
     st.session_state['mip_control_counter'] = 0
 
+if 'cor_control_counter' not in st.session_state:
+    st.session_state['cor_control_counter'] = 0
+
 # lsfm
 if 'y_val' not in st.session_state:
     st.session_state['y_val'] = '200'
@@ -146,40 +149,42 @@ with col1:
                          format='%g',
                          key='y_slider_s',
                          on_change=y_sess_update)
-    #
-    # # template
-    # im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    # im_click_pre = downscale_local_mean(im_click_pre,(2,2))
-    # im_click = helpers.im_plot(im_click_pre)
-    # canvas_result = st_canvas(
-    #     stroke_width=0,
-    #     stroke_color="black",
-    #     background_image=im_click,
-    #     height=im_click_pre.shape[0],
-    #     width=im_click_pre.shape[1],
-    #     drawing_mode="circle",
-    #     display_toolbar=False,
-    #     key="center_circle_app"
-    # )
-    # if canvas_result.json_data is not None:
-    #     df = pd.json_normalize(canvas_result.json_data["objects"])
-    #     if len(df) != 0:
-    #         df["center_x"] = df["left"] + df["radius"] * np.cos(
-    #             df["angle"] * np.pi / 180
-    #         )
-    #         df["center_y"] = df["top"] + df["radius"] * np.sin(
-    #             df["angle"] * np.pi / 180
-    #         )
-    #
-    #         # st.subheader("Click coordinate")
-    #         for index, row in df.iterrows():
-    #             if index + 1 == len(df):
-    #                 # st.markdown(
-    #                 #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-    #                 #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-    #                 # )
-    #                 st.session_state.x_val = str(row["center_x"])
-    #                 st.session_state.z_val = str(row["center_y"])
+
+    # template coronal
+    im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
+    im_click_pre = downscale_local_mean(im_click_pre,(2,2))
+    im_click = helpers.im_plot(im_click_pre)
+    canvas_result = st_canvas(
+        stroke_width=0,
+        stroke_color="black",
+        background_image=im_click,
+        height=im_click_pre.shape[0],
+        width=im_click_pre.shape[1],
+        drawing_mode="circle",
+        display_toolbar=False,
+        key="center_circle_app"
+    )
+    if canvas_result.json_data is not None:
+        df = pd.json_normalize(canvas_result.json_data["objects"])
+        if len(df) != 0:
+            df["center_x"] = df["left"] + df["radius"] * np.cos(
+                df["angle"] * np.pi / 180
+            )
+            df["center_y"] = df["top"] + df["radius"] * np.sin(
+                df["angle"] * np.pi / 180
+            )
+
+            # st.subheader("Click coordinate")
+            for index, row in df.iterrows():
+                if index + 1 == len(df):
+                    # st.markdown(
+                    #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                    #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                    # )
+                    if len(df) > st.session_state['cor_control_counter']:
+                        st.session_state.x_val = str(row["center_x"])
+                        st.session_state.z_val = str(row["center_y"])
+                        st.session_state['cor_control_counter'] = len(df)
 
 
     ### TEXT FIELD INPUT
