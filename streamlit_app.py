@@ -13,6 +13,12 @@ import plotly.express as px
 import plotly.graph_objects as go
 from skimage.transform import downscale_local_mean
 
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
+
+local_css("style.css")
+
 
 def fig2img(fig):
     """Convert a Matplotlib figure to a PIL Image and return it"""
