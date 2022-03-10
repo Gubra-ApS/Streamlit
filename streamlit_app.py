@@ -214,10 +214,10 @@ with col1:
                     # )
                     st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
 
-    if st.button('Next'):
-        st.session_state.y_val = str(int(st.session_state.y_val)+5)
-    if st.button('Prev'):
-        st.session_state.y_val = str(int(st.session_state.y_val)-5)
+    # if st.button('Next'):
+    #     st.session_state.y_val = str(int(st.session_state.y_val)+5)
+    # if st.button('Prev'):
+    #     st.session_state.y_val = str(int(st.session_state.y_val)-5)
 
     # template
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
