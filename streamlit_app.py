@@ -149,9 +149,13 @@ with st.container():
                              on_change=y_sess_update)
 
     with col2a:
+        df_cor = pd.DataFrame({
+            'plates': ('Template', 'Annotations')
+        })
+
         option_coronal = st.selectbox(
-            'Current highlight region:',
-            df_highligt['acronym'])
+            'Coronal plate:',
+            df_cor['plates'])
 
         # template coronal
         im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val)) + 30, :])
