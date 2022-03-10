@@ -150,7 +150,6 @@ with col1:
                          key='y_slider_s',
                          on_change=y_sess_update)
 
-
     # template coronal
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     im_click_pre = resize(im_click_pre,(179,246))
