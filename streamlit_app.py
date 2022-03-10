@@ -138,6 +138,7 @@ with col1:
                     #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
+                    st.write(len(df))
                     if len(df) > st.session_state['mip_control_counter']:
                         st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
                         st.session_state['mip_control_counter'] = len(df)
@@ -180,8 +181,6 @@ with col1:
 
 
 with col2:
-    st.write(st.session_state.y_val)
-    #st.header('Coordinate viewer')
     st.markdown(f'<h1 style="color:#aaaaaa;font-size:32px;">{"Coordinate viewer"}</h1>', unsafe_allow_html=True)
     st.markdown(f'<h3 style="color:#aaaaaa;font-size:22px;">{st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}</h3>', unsafe_allow_html=True)
     # st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
