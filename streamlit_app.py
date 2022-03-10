@@ -85,12 +85,29 @@ def im_plot_coord(im, x, y):
 
 
 # create session variables
+# lsfm
 if 'y_val' not in st.session_state:
-    st.session_state['y_val'] = '150'
+    st.session_state['y_val'] = '50'
 if 'x_val' not in st.session_state:
-    st.session_state['x_val'] = '150'
+    st.session_state['x_val'] = '50'
 if 'z_val' not in st.session_state:
-    st.session_state['z_val'] = '180'
+    st.session_state['z_val'] = '50'
+
+# mri
+if 'y_val_mri' not in st.session_state:
+    st.session_state['y_val_mri'] = '50'
+if 'x_val_mri' not in st.session_state:
+    st.session_state['x_val_mri'] = '50'
+if 'z_val_mri' not in st.session_state:
+    st.session_state['z_val_mri'] = '50'
+
+# ccfv3
+if 'y_val_ccfv3' not in st.session_state:
+    st.session_state['y_val_ccfv3'] = '50'
+if 'x_val_ccfv3' not in st.session_state:
+    st.session_state['x_val_ccfv3'] = '50'
+if 'z_val_ccfv3' not in st.session_state:
+    st.session_state['z_val_ccfv3'] = '50'
 
 
 @st.cache  # 👈 This function will be cached
@@ -245,20 +262,26 @@ with col2:
         st.write('Syncing')
 
     # plot MRI
-    im_mri = np.copy(mri[:, int(float(st.session_state.y_val))+30, :])
+    im_mri = np.copy(mri[:, int(float(st.session_state.y_val_mri))+30, :])
     im_mri = downscale_local_mean(im_mri,(2,2))
-    im_mri_pil = im_plot_coord(im_mri, st.session_state.x_val, st.session_state.z_val)
+    im_mri_pil = im_plot_coord(im_mri, st.session_state.x_val_mri, st.session_state.z_val_mri)
     st.image(im_mri_pil)
 
     # plot CCFv3
-    im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val))+30, :])
+    im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val_ccfv3))+30, :])
     im_ccfv3 = downscale_local_mean(im_ccfv3,(2,2))
-    im_ccfv3_pil = im_plot_coord(im_ccfv3, st.session_state.x_val, st.session_state.z_val)
+    im_ccfv3_pil = im_plot_coord(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
     st.image(im_ccfv3_pil)
 
-    # if st.button('Got to coordinate'):
-    #     # parse text string and set sesseio state vars
-    #     st.write(ste_coord)
+    if st.button('Got to coordinate'):
+        # parse text string and set sesseio state vars
+        st.session_state.y_val_mri = st.session_state.y_val
+        st.session_state.x_val_mri = st.session_state.x_val
+        st.session_state.z_val_mri = st.session_state.z_val
+
+        st.session_state.y_val_ccfv3 = st.session_state.y_val
+        st.session_state.x_val_ccfv3 = st.session_state.x_val
+        st.session_state.z_val_ccfv3 = st.session_state.z_val
 
     #
 
