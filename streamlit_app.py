@@ -63,6 +63,27 @@ def im_plot_mip(im, line_coord):
 
     return pil_im
 
+def im_plot_pos(width, pos):
+    # px = 1 / plt.rcParams['figure.dpi']
+    # fig = plt.figure(figsize=(int(455*px), int(297*px)))
+    #fig = plt.figure(figsize=(13.9, 10))
+    pos_arr = np.ones((20,width),'uint8')
+    pos_arr[:,width-5:width+5] = 0
+    fig, ax = plt.subplots()
+    ax.imshow(np, cmap='gray')
+
+    # rect = patches.Rectangle((0, line_coord), 200, 2, linewidth=1, edgecolor='r', facecolor='r')
+    # ax.add_patch(rect)
+
+    ax.axis('off')
+    fig.tight_layout()
+
+    pil_im = fig2img(fig)
+
+    # st.pyplot(fig)
+
+    return pil_im
+
 
 def im_plot_coord(im, x, y):
     # px = 1 / plt.rcParams['figure.dpi']
@@ -214,6 +235,8 @@ with col1:
                     # )
                     st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
 
+    im_pos = im_plot_pos(300, st.session_state.y_val)
+    st.image(im_pos)
     # if st.button('Next'):
     #     st.session_state.y_val = str(int(st.session_state.y_val)+5)
     # if st.button('Prev'):
