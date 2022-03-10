@@ -238,7 +238,7 @@ with col1:
 
     # widget = st.empty()
 
-    slider_y = st.slider('Position', 0, 300, st.session_state.y_val)
+    slider_y = st.slider('Position', 0, 300, int(float(st.session_state.y_val)))
 
     # im_pos = im_plot_pos(300, st.session_state.y_val)
     # st.image(im_pos)
