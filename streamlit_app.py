@@ -107,24 +107,12 @@ df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 #     'Slice orientation:',
 #      df_options['orientaion'])
 
-st.sidebar.header('Atlas brain regions')
-option_highligt = st.sidebar.selectbox(
-    'Current highlight region:',
-     df_highligt['acronym'])
+
 
 # temp = df_highligt.loc[df_highligt['acronym'] == option_highligt]
 # st.session_state.y_val = str(temp.iloc[0]['slice_number'])
 
-st.sidebar.header('Stereotaxic coordinate')
-ste_coord = st.sidebar.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
 
-if st.sidebar.button('Got to coordinate'):
-    # parse text string and set sesseio state vars
-    st.write(ste_coord)
-    # st.session_state.y_val = y
-    # st.session_state.x_val = x
-    # st.session_state.z_val = z
-#
 
 
 # st.sidebar.header('Explore')
@@ -132,6 +120,11 @@ if st.sidebar.button('Got to coordinate'):
 # Create a canvas component
 col1, col2 = st.columns(2)
 with col1:
+    st.header('Atlas brain regions')
+    option_highligt = st.selectbox(
+        'Current highlight region:',
+        df_highligt['acronym'])
+
     image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
     pix = np.array(image)
     pix = np.swapaxes(pix, 0, 1)
@@ -172,6 +165,17 @@ with col1:
     y_slider = st.slider('Anterior-posterios', min_value=0, max_value=199, value=y_coord, step=1)
 
 with col2:
+    st.header('Stereotaxic coordinate')
+    ste_coord = st.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
+
+    if st.button('Got to coordinate'):
+        # parse text string and set sesseio state vars
+        st.write(ste_coord)
+        # st.session_state.y_val = y
+        # st.session_state.x_val = x
+        # st.session_state.z_val = z
+    #
+
     # template
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     im_click_pre = downscale_local_mean(im_click_pre,(2,2))
