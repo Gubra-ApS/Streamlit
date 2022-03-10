@@ -44,12 +44,12 @@ if 'z_val_ccfv3' not in st.session_state:
     st.session_state['z_val_ccfv3'] = '80'
 
 def y_sess_update():
-    st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 300 * 512) - 20))
+    st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 340 * 512) - 20))
 
 def y_sess_update_select():
     2+2
     # Change y_coord to region center
-    # st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 300 * 512) - 20))
+    # st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 340 * 512) - 20))
 
 def ste_coord_sess():
     st.session_state.y_val = st.session_state.ste_coord_s.split(';')[1].strip()
@@ -117,7 +117,7 @@ with col1:
         stroke_color="black",
         background_image=im_mip,
         height=200,
-        width=300,
+        width=340,
         drawing_mode="circle",
         display_toolbar=False,
         key="mip"
@@ -140,10 +140,10 @@ with col1:
                     #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                     # )
                     if len(df) > st.session_state['mip_control_counter']:
-                        st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
+                        st.session_state.y_val = str(int(row["center_x"] / 340 * 512) - 20)
                         st.session_state['mip_control_counter'] = len(df)
 
-    slider_y = st.slider('Position', 0, 300, int((float(st.session_state.y_val) / 512 * 300)+12), key='y_slider_s', on_change=y_sess_update)
+    slider_y = st.slider('Position', 0, 340, int((float(st.session_state.y_val) / 512 * 340)+12), key='y_slider_s', on_change=y_sess_update)
     #
     # # template
     # im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
