@@ -91,6 +91,13 @@ df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 with st.container():
     st.write("This is inside the container")
 
+    # Create a canvas component
+    col1a, col2a = st.columns(2)
+    with col1a:
+        st.write('Col1a')
+    with col2a:
+        st.write('Col2a')
+
 # Create a canvas component
 col1, col2 = st.columns(2)
 with col1:
