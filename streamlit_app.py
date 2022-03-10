@@ -236,8 +236,13 @@ with col1:
                     # )
                     st.session_state.y_val = str(int(row["center_x"] / 300 * 512) - 20)
 
-    im_pos = im_plot_pos(100, st.session_state.y_val)
-    st.image(im_pos)
+    # widget = st.empty()
+
+    slider_y = st.slider('Position', 0, 300, st.session_state.y_val)
+
+    # im_pos = im_plot_pos(300, st.session_state.y_val)
+    # st.image(im_pos)
+
     # if st.button('Next'):
     #     st.session_state.y_val = str(int(st.session_state.y_val)+5)
     # if st.button('Prev'):
