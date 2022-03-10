@@ -152,6 +152,7 @@ with col1:
 
     # template coronal
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
+    st.write(im_click_pre.shape)
     im_click_pre = resize(im_click_pre,(174,246))
     im_click = helpers.im_plot(im_click_pre)
     canvas_result = st_canvas(
@@ -201,7 +202,6 @@ with col2:
 
     # plot LSFM
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    #im_lsfm = downscale_local_mean(im_lsfm,(2,2))
     im_lsfm_pil = helpers.im_plot_coord(im_lsfm, st.session_state.x_val, st.session_state.z_val)
     st.image(im_lsfm_pil)
 
@@ -217,13 +217,11 @@ with col2:
 
     # plot MRI
     im_mri = np.copy(mri[:, int(float(st.session_state.y_val_mri))+30, :])
-    im_mri = downscale_local_mean(im_mri,(2,2))
     im_mri_pil = helpers.im_plot_coord(im_mri, st.session_state.x_val_mri, st.session_state.z_val_mri)
     st.image(im_mri_pil)
 
     # plot CCFv3
     im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val_ccfv3))+30, :])
-    im_ccfv3 = downscale_local_mean(im_ccfv3,(2,2))
     im_ccfv3_pil = helpers.im_plot_coord(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
     st.image(im_ccfv3_pil)
 
