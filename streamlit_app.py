@@ -120,7 +120,7 @@ df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 # Create a canvas component
 col1, col2 = st.columns(2)
 with col1:
-    st.header('Atlas brain regions')
+    st.header('Coordinate picker')
     option_highligt = st.selectbox(
         'Current highlight region:',
         df_highligt['acronym'])
@@ -198,11 +198,12 @@ with col1:
                     st.session_state.x_val = str(row["center_x"])
                     st.session_state.z_val = str(row["center_y"])
 
-    st.header('Stereotaxic coordinate')
-    ste_coord = st.text_input('x (medial-laterally); y (anterior-posterior); z ():', '0; 0; 0')
+    st.header('Type coordinate')
+    ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '0; 0; 0')
 
 with col2:
-    st.header('Selected coordinate [' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
+    st.header('Coordinate viewer')
+    st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 
     # plot LSFM
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
