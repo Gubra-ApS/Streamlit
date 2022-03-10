@@ -87,27 +87,27 @@ def im_plot_coord(im, x, y):
 # create session variables
 # lsfm
 if 'y_val' not in st.session_state:
-    st.session_state['y_val'] = '50'
+    st.session_state['y_val'] = '200'
 if 'x_val' not in st.session_state:
-    st.session_state['x_val'] = '50'
+    st.session_state['x_val'] = '60'
 if 'z_val' not in st.session_state:
-    st.session_state['z_val'] = '50'
+    st.session_state['z_val'] = '80'
 
 # mri
 if 'y_val_mri' not in st.session_state:
-    st.session_state['y_val_mri'] = '50'
+    st.session_state['y_val_mri'] = '200'
 if 'x_val_mri' not in st.session_state:
-    st.session_state['x_val_mri'] = '50'
+    st.session_state['x_val_mri'] = '60'
 if 'z_val_mri' not in st.session_state:
-    st.session_state['z_val_mri'] = '50'
+    st.session_state['z_val_mri'] = '80'
 
 # ccfv3
 if 'y_val_ccfv3' not in st.session_state:
-    st.session_state['y_val_ccfv3'] = '50'
+    st.session_state['y_val_ccfv3'] = '200'
 if 'x_val_ccfv3' not in st.session_state:
-    st.session_state['x_val_ccfv3'] = '50'
+    st.session_state['x_val_ccfv3'] = '60'
 if 'z_val_ccfv3' not in st.session_state:
-    st.session_state['z_val_ccfv3'] = '50'
+    st.session_state['z_val_ccfv3'] = '80'
 
 
 @st.cache  # 👈 This function will be cached
@@ -164,7 +164,7 @@ df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 col1, col2 = st.columns(2)
 with col1:
     st.header('Coordinate picker')
-    ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '0; 0; 0')
+    ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):', '60; 200; 80')
     if st.button('Got to coordinate'):
         # parse text string and set sesseio state vars
         st.session_state.y_val = ste_coord.split(';')[1].strip()
