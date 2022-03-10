@@ -4,7 +4,7 @@ import numpy as np
 import SimpleITK as sitk
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
-from skimage.transform import downscale_local_mean
+from skimage.transform import resize, downscale_local_mean
 import helpers
 
 ##### CSS STYLING
@@ -152,7 +152,7 @@ with col1:
 
     # template coronal
     im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    im_click_pre = downscale_local_mean(im_click_pre,(2,2))
+    im_click_pre = resize(im_click_pre,(174,246))
     im_click = helpers.im_plot(im_click_pre)
     canvas_result = st_canvas(
         stroke_width=0,
