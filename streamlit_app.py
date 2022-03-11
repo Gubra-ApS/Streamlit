@@ -199,11 +199,12 @@ with st.container():
                         #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                         # )
                         if len(df) > st.session_state['cor_control_counter']:
-                            if option_coronal == 'Annotations':
-                                st.session_state['highligt_ind'] = 10
-
                             st.session_state.x_val = str(int((float(row["center_x"]) / 246 * 369)))
                             st.session_state.z_val = str(int((float(row["center_y"]) / 179 * 268)))
+
+                            if option_coronal == 'Annotations':
+                                st.session_state['highligt_ind'] = lsfm_ano[int(float(st.session_state.x_val)),int(float(st.session_state.y_val)),int(float(st.session_state.z_val))]
+
                             st.session_state['cor_control_counter'] = len(df)
 
         ### TEXT FIELD INPUT
