@@ -156,7 +156,6 @@ with st.container():
                                 st.write(int(float(st.session_state.y_val))+30)
                                 st.write(int(268 - float(st.session_state.z_val) - 4) )
 
-
                                 st.write(temp_id)
                                 temp = df_highligt[df_highligt['id'] == temp_id]
                                 st.write(temp)
