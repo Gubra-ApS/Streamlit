@@ -175,44 +175,53 @@ with st.container():
             key='y_select_s',
             on_change=y_sess_update_select)
 
-        ### MIP DRAWABLE CANVAS
-        # st.write('Click images to select coordinate..')
+        # draw mip with line
         image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
         pix = np.array(image)
         pix = np.swapaxes(pix, 0, 1)
         y_coord = int(int(float(st.session_state.y_val)) / 512 * 199) + 20
         im_mip = helpers.im_plot_mip(pix, y_coord)
+        st.image(im_mip, width=340)
 
-        canvas_result_mip = st_canvas(
-            stroke_width=0,
-            stroke_color="black",
-            background_image=im_mip,
-            height=200,
-            width=340,
-            drawing_mode="circle",
-            display_toolbar=False,
-            key="mip"
-        )
-        if canvas_result_mip.json_data is not None:
-            df = pd.json_normalize(canvas_result_mip.json_data["objects"])
-            if len(df) != 0:
-                df["center_x"] = df["left"] + df["radius"] * np.cos(
-                    df["angle"] * np.pi / 180
-                )
-                df["center_y"] = df["top"] + df["radius"] * np.sin(
-                    df["angle"] * np.pi / 180
-                )
-
-                # st.subheader("Click coordinate")
-                for index, row in df.iterrows():
-                    if index + 1 == len(df):
-                        # st.markdown(
-                        #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                        #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                        # )
-                        if len(df) > st.session_state['mip_control_counter']:
-                            st.session_state.y_val = str(int(row["center_x"] / 340 * 512) - 20)
-                            st.session_state['mip_control_counter'] = len(df)
+        #
+        # ### MIP DRAWABLE CANVAS
+        # # st.write('Click images to select coordinate..')
+        # image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
+        # pix = np.array(image)
+        # pix = np.swapaxes(pix, 0, 1)
+        # y_coord = int(int(float(st.session_state.y_val)) / 512 * 199) + 20
+        # im_mip = helpers.im_plot_mip(pix, y_coord)
+        #
+        # canvas_result_mip = st_canvas(
+        #     stroke_width=0,
+        #     stroke_color="black",
+        #     background_image=im_mip,
+        #     height=200,
+        #     width=340,
+        #     drawing_mode="circle",
+        #     display_toolbar=False,
+        #     key="mip"
+        # )
+        # if canvas_result_mip.json_data is not None:
+        #     df = pd.json_normalize(canvas_result_mip.json_data["objects"])
+        #     if len(df) != 0:
+        #         df["center_x"] = df["left"] + df["radius"] * np.cos(
+        #             df["angle"] * np.pi / 180
+        #         )
+        #         df["center_y"] = df["top"] + df["radius"] * np.sin(
+        #             df["angle"] * np.pi / 180
+        #         )
+        #
+        #         # st.subheader("Click coordinate")
+        #         for index, row in df.iterrows():
+        #             if index + 1 == len(df):
+        #                 # st.markdown(
+        #                 #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+        #                 #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+        #                 # )
+        #                 if len(df) > st.session_state['mip_control_counter']:
+        #                     st.session_state.y_val = str(int(row["center_x"] / 340 * 512) - 20)
+        #                     st.session_state['mip_control_counter'] = len(df)
 
         # slider_y = st.slider('Position', 0, 340, int((float(st.session_state.y_val) / 512 * 340)+12),
         #                      format='%g',
