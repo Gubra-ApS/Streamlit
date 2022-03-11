@@ -56,7 +56,10 @@ def y_sess_update():
     st.session_state.y_val = str(st.session_state.y_slider_s)
 
 def y_sess_update_select():
-    a=1
+    temp = df_highligt[df_highligt['acronym'] == st.session_state.y_select_s]
+    if temp.first_valid_index() != None:
+        st.session_state['highligt_ind'] = int(temp.first_valid_index())
+
     #st.session_state['highligt_ind'] = st.session_state.y_select_s
 
 def ste_coord_sess():
