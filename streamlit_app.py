@@ -178,7 +178,7 @@ with st.container():
         # draw mip with line
         image = Image.open('sagital_white_neuropedia/' + option_highligt + '.tif')
         pix = np.array(image)
-        pix = np.swapaxes(pix, 0, 1)
+        pix = np.flip(pix, 1)
         y_coord = int(int(float(st.session_state.y_val)) / 512 * 199)
         im_mip = helpers.im_plot_mip(pix, y_coord)
         st.image(im_mip, width=340)
