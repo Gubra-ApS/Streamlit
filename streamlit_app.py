@@ -148,6 +148,7 @@ with st.container():
 
                             if option_coronal == 'Annotations':
                                 im_ano_temp = np.copy(lsfm_ano)
+                                im_ano_temp = np.flip(im_ano_temp,0)
                                 temp_id = im_ano_temp[
                                     int(268-float(st.session_state.z_val)-4), int(float(st.session_state.y_val))+30, int(
                                         float(st.session_state.x_val))]
