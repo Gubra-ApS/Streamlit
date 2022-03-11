@@ -230,7 +230,11 @@ col1, col2 = st.columns(2)
 with col1:
     # plot LSFM
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    im_lsfm_pil = helpers.im_plot_coord(im_lsfm, st.session_state.x_val, st.session_state.z_val)
+    im_ano = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
+    temp_id = lsfm_ano[int(float(st.session_state.z_val)), int(float(st.session_state.y_val)), int(float(st.session_state.x_val))]
+    im_ano[im_ano!=temp_id] = 0
+    im_ano[im_ano>0] = 1
+    im_lsfm_pil = helpers.im_plot_coord(im_lsfm, im_ano, st.session_state.x_val, st.session_state.z_val)
     st.image(im_lsfm_pil)
 
     if st.button('Sync to LSFM'):
@@ -243,16 +247,16 @@ with col1:
         st.session_state.x_val_ccfv3 = st.session_state.x_val
         st.session_state.z_val_ccfv3 = st.session_state.z_val
 
-with col2:
-    # plot MRI
-    im_mri = np.copy(mri[:, int(float(st.session_state.y_val_mri))+30, :])
-    im_mri_pil = helpers.im_plot_coord(im_mri, st.session_state.x_val_mri, st.session_state.z_val_mri)
-    st.image(im_mri_pil)
-
-    # plot CCFv3
-    im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val_ccfv3))+30, :])
-    im_ccfv3_pil = helpers.im_plot_coord(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
-    st.image(im_ccfv3_pil)
+# with col2:
+    # # plot MRI
+    # im_mri = np.copy(mri[:, int(float(st.session_state.y_val_mri))+30, :])
+    # im_mri_pil = helpers.im_plot_coord(im_mri, st.session_state.x_val_mri, st.session_state.z_val_mri)
+    # st.image(im_mri_pil)
+    #
+    # # plot CCFv3
+    # im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val_ccfv3))+30, :])
+    # im_ccfv3_pil = helpers.im_plot_coord(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
+    # st.image(im_ccfv3_pil)
 
     #
 
