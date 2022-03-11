@@ -159,7 +159,7 @@ with st.container():
                             st.session_state['cor_control_counter'] = len(df)
 
         ### TEXT FIELD INPUT
-        st.write('Click image to select x, z coordinates..')
+        st.write('Anterior-posterior')
         ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):',
                                   f'{st.session_state.x_val}; {st.session_state.y_val}; {st.session_state.z_val}',
                                   key="ste_coord_s",
@@ -176,7 +176,7 @@ with st.container():
             on_change=y_sess_update_select)
 
         # draw mip with line
-        image = Image.open('horizontal_white_neuropedia/' + option_highligt + '.tif')
+        image = Image.open('sagital_white_neuropedia/' + option_highligt + '.tif')
         pix = np.array(image)
         pix = np.swapaxes(pix, 0, 1)
         y_coord = int(int(float(st.session_state.y_val)) / 512 * 199)
