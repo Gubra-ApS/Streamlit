@@ -100,6 +100,7 @@ with st.container():
     col1a, col2a = st.columns(2)
     with col1a:
         ### SELECT BOX WITH ATLAS REGIONS
+        option_highligt = st.empty()
         option_highligt = st.selectbox(
             'Current highlight region:',
             df_highligt['acronym'],
@@ -125,7 +126,6 @@ with st.container():
             display_toolbar=False,
             key="mip"
         )
-        st.write(canvas_result_mip)
         if canvas_result_mip.json_data is not None:
             df = pd.json_normalize(canvas_result_mip.json_data["objects"])
             if len(df) != 0:
@@ -229,19 +229,19 @@ st.subheader(f'Current coordinate: {st.session_state.x_val}, {st.session_state.y
 #     unsafe_allow_html=True)
 # st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 #
-col1, col2 = st.columns(2)
-with col1:
-    # plot LSFM
-    im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    im_ano = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
-
-    temp_id = df_highligt.iloc[st.session_state.highligt_ind,0]
-
-    im_ano[im_ano!=temp_id] = 0
-    im_ano[im_ano>0] = 100
-    im_lsfm_pil = helpers.im_plot_coord(im_lsfm, im_ano, st.session_state.x_val, st.session_state.z_val)
-    st.image(im_lsfm_pil)
+# col1, col2 = st.columns(2)
+# with col1:
+#     # plot LSFM
+#     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
+#     im_ano = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
 #
+#     temp_id = df_highligt.iloc[st.session_state.highligt_ind,0]
+#
+#     im_ano[im_ano!=temp_id] = 0
+#     im_ano[im_ano>0] = 100
+#     im_lsfm_pil = helpers.im_plot_coord(im_lsfm, im_ano, st.session_state.x_val, st.session_state.z_val)
+#     st.image(im_lsfm_pil)
+# #
 #     if st.button('Sync to LSFM'):
 #         # JPE calculations
 #         st.session_state.y_val_mri = st.session_state.y_val
