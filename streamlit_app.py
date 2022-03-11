@@ -207,6 +207,7 @@ with st.container():
                                 st.write(temp_id)
                                 temp = df_highligt[df_highligt['id']==temp_id]
                                 st.write(temp)
+                                st.write(type(temp))
                                 #st.session_state['highligt_ind'] = lsfm_ano[int(float(st.session_state.x_val)),int(float(st.session_state.y_val)),int(float(st.session_state.z_val))]
 
                             st.session_state['cor_control_counter'] = len(df)
