@@ -261,7 +261,7 @@ if option_coronal == 'Template':
 else:
     im_click_pre = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
 
-im_click_pre = resize(im_click_pre, (215, 295))
+# im_click_pre = resize(im_click_pre, (215, 295))
 im_click = helpers.im_plot(im_click_pre)
 canvas_result = st_canvas(
     stroke_width=0,
