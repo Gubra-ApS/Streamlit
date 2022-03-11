@@ -232,7 +232,7 @@ with col1:
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     im_ano = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
 
-    temp_id = lsfm_ano[int(float(st.session_state.z_val)), int(float(st.session_state.y_val)), int(float(st.session_state.x_val))]
+    temp_id = df_highligt.iloc[st.session_state['highligt_ind'],0]
     st.write(temp_id)
 
     im_ano[im_ano!=temp_id] = 0
