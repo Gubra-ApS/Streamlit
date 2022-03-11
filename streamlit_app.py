@@ -151,7 +151,7 @@ with st.container():
                                     int(float(st.session_state.z_val)), int(float(st.session_state.y_val)), int(
                                         float(st.session_state.x_val))]
                                 temp = df_highligt[df_highligt['id'] == temp_id]
-                                # st.write(temp)
+                                st.write(temp)
                                 # st.write(temp.first_valid_index())
                                 if temp.first_valid_index() != None:
                                     st.session_state['highligt_ind'] = int(temp.first_valid_index())
