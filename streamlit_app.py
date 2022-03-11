@@ -99,6 +99,73 @@ with st.container():
     # Create a canvas component
     col1a, col2a = st.columns(2)
     with col1a:
+        df_cor = pd.DataFrame({
+            'plates': ('Template', 'Annotations')
+        })
+
+        option_coronal = st.selectbox(
+            'Coronal plate:',
+            df_cor['plates'])
+
+        # template coronal
+        if option_coronal == 'Template':
+            im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val)) + 30, :])
+        else:
+            im_click_pre = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
+
+        im_click_pre = resize(im_click_pre, (179, 246))
+        im_click = helpers.im_plot(im_click_pre)
+        canvas_result = st_canvas(
+            stroke_width=0,
+            stroke_color="black",
+            background_image=im_click,
+            height=im_click_pre.shape[0],
+            width=im_click_pre.shape[1],
+            drawing_mode="circle",
+            display_toolbar=False,
+            key="center_circle_app"
+        )
+        if canvas_result.json_data is not None:
+            df = pd.json_normalize(canvas_result.json_data["objects"])
+            if len(df) != 0:
+                df["center_x"] = df["left"] + df["radius"] * np.cos(
+                    df["angle"] * np.pi / 180
+                )
+                df["center_y"] = df["top"] + df["radius"] * np.sin(
+                    df["angle"] * np.pi / 180
+                )
+
+                # st.subheader("Click coordinate")
+                for index, row in df.iterrows():
+                    if index + 1 == len(df):
+                        # st.markdown(
+                        #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                        #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
+                        # )
+                        if len(df) > st.session_state['cor_control_counter']:
+                            st.session_state.x_val = str(int((float(row["center_x"]) / 246 * 369)))
+                            st.session_state.z_val = str(int((float(row["center_y"]) / 179 * 268)))
+
+                            if option_coronal == 'Annotations':
+                                temp_id = lsfm_ano[
+                                    int(float(st.session_state.z_val)), int(float(st.session_state.y_val)), int(
+                                        float(st.session_state.x_val))]
+                                temp = df_highligt[df_highligt['id'] == temp_id]
+                                # st.write(temp)
+                                # st.write(temp.first_valid_index())
+                                if temp.first_valid_index() != None:
+                                    st.session_state['highligt_ind'] = int(temp.first_valid_index())
+
+                            st.session_state['cor_control_counter'] = len(df)
+
+        ### TEXT FIELD INPUT
+        st.write('Click image to select x, z coordinates..')
+        ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):',
+                                  f'{st.session_state.x_val}; {st.session_state.y_val}; {st.session_state.z_val}',
+                                  key="ste_coord_s",
+                                  on_change=ste_coord_sess)
+
+    with col2a:
         ### SELECT BOX WITH ATLAS REGIONS
         option_highligt = st.empty()
         option_highligt = st.selectbox(
@@ -157,70 +224,6 @@ with st.container():
                              key='y_slider_s',
                              on_change=y_sess_update)
 
-    with col2a:
-        df_cor = pd.DataFrame({
-            'plates': ('Template', 'Annotations')
-        })
-
-        option_coronal = st.selectbox(
-            'Coronal plate:',
-            df_cor['plates'])
-
-        # template coronal
-        if option_coronal == 'Template':
-            im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val)) + 30, :])
-        else:
-            im_click_pre = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
-
-        im_click_pre = resize(im_click_pre, (179, 246))
-        im_click = helpers.im_plot(im_click_pre)
-        canvas_result = st_canvas(
-            stroke_width=0,
-            stroke_color="black",
-            background_image=im_click,
-            height=im_click_pre.shape[0],
-            width=im_click_pre.shape[1]+10,
-            drawing_mode="circle",
-            display_toolbar=False,
-            key="center_circle_app"
-        )
-        if canvas_result.json_data is not None:
-            df = pd.json_normalize(canvas_result.json_data["objects"])
-            if len(df) != 0:
-                df["center_x"] = df["left"] + df["radius"] * np.cos(
-                    df["angle"] * np.pi / 180
-                )
-                df["center_y"] = df["top"] + df["radius"] * np.sin(
-                    df["angle"] * np.pi / 180
-                )
-
-                # st.subheader("Click coordinate")
-                for index, row in df.iterrows():
-                    if index + 1 == len(df):
-                        # st.markdown(
-                        #     # f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                        #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
-                        # )
-                        if len(df) > st.session_state['cor_control_counter']:
-                            st.session_state.x_val = str(int((float(row["center_x"]) / 246 * 369)))
-                            st.session_state.z_val = str(int((float(row["center_y"]) / 179 * 268)))
-
-                            if option_coronal == 'Annotations':
-                                temp_id = lsfm_ano[int(float(st.session_state.z_val)),int(float(st.session_state.y_val)),int(float(st.session_state.x_val))]
-                                temp = df_highligt[df_highligt['id']==temp_id]
-                                # st.write(temp)
-                                # st.write(temp.first_valid_index())
-                                if temp.first_valid_index() != None:
-                                    st.session_state['highligt_ind'] = int(temp.first_valid_index())
-
-                            st.session_state['cor_control_counter'] = len(df)
-
-        ### TEXT FIELD INPUT
-        st.write('Click image to select x, z coordinates..')
-        ste_coord = st.text_input('(medial-lateral); (anterior-posterior); (dorsal-caudal):',
-                                  f'{st.session_state.x_val}; {st.session_state.y_val}; {st.session_state.z_val}',
-                                  key="ste_coord_s",
-                                  on_change=ste_coord_sess)
 
 
 # Create a canvas component
