@@ -204,6 +204,7 @@ with st.container():
 
                             if option_coronal == 'Annotations':
                                 temp_aibs_id = lsfm_ano[int(float(st.session_state.z_val)),int(float(st.session_state.y_val)),int(float(st.session_state.x_val))]
+                                st.write(temp_aibs_id)
                                 temp = df_highligt[df_highligt['aibs_id']==temp_aibs_id]
                                 st.write(temp)
                                 #st.session_state['highligt_ind'] = lsfm_ano[int(float(st.session_state.x_val)),int(float(st.session_state.y_val)),int(float(st.session_state.z_val))]
