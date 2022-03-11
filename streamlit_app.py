@@ -119,8 +119,8 @@ with st.container():
             stroke_width=0,
             stroke_color="black",
             background_image=im_click,
-            height=im_click_pre.shape[0],
-            width=im_click_pre.shape[1],
+            height=im_click_pre.shape[1],
+            width=im_click_pre.shape[0],
             drawing_mode="circle",
             display_toolbar=False,
             key="center_circle_app"
