@@ -227,7 +227,7 @@ with st.container():
             'Current highlight region:',
             df_highligt['acronym'],
             index=st.session_state.highligt_ind,
-            key='y_select_s',
+            key='y_select_s_after',
             on_change=y_sess_update_select)
 
 # Create a canvas component
