@@ -148,8 +148,9 @@ with st.container():
 
                             if option_coronal == 'Annotations':
                                 temp_id = lsfm_ano[
-                                    int(float(st.session_state.z_val)), int(float(st.session_state.y_val)), int(
-                                        float(st.session_state.x_val))]
+                                    int(float(st.session_state.x_val)), int(float(st.session_state.y_val)), int(
+                                        float(st.session_state.z_val))]
+                                st.write(temp_id)
                                 temp = df_highligt[df_highligt['id'] == temp_id]
                                 st.write(temp)
                                 # st.write(temp.first_valid_index())
