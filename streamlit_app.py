@@ -222,6 +222,14 @@ with st.container():
                                   key="ste_coord_s",
                                   on_change=ste_coord_sess)
 
+        # re-draw coordinate highligt select box
+        option_highligt = st.selectbox(
+            'Current highlight region:',
+            df_highligt['acronym'],
+            index=st.session_state.highligt_ind,
+            key='y_select_s',
+            on_change=y_sess_update_select)
+
 # Create a canvas component
 st.subheader(f'Current coordinate: {st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}')
 # st.markdown(
