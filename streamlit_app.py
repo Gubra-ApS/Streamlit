@@ -241,7 +241,6 @@ with col1:
     im_ano[im_ano>0] = 100
     im_lsfm_pil = helpers.im_plot_coord(im_lsfm, im_ano, st.session_state.x_val, st.session_state.z_val)
     st.image(im_lsfm_pil)
-    st.image(helpers.im_plot(im_ano))
 #
 #     if st.button('Sync to LSFM'):
 #         # JPE calculations
