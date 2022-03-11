@@ -125,6 +125,7 @@ with st.container():
             display_toolbar=False,
             key="mip"
         )
+        st.write(canvas_result_mip)
         if canvas_result_mip.json_data is not None:
             df = pd.json_normalize(canvas_result_mip.json_data["objects"])
             if len(df) != 0:
