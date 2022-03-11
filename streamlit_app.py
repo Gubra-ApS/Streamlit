@@ -99,13 +99,14 @@ with st.container():
     # Create a canvas component
     col1a, col2a = st.columns(2)
     with col1a:
-        ### SELECT BOX WITH ATLAS REGIONS
-        option_highligt = st.selectbox(
-            'Current highlight region:',
-            df_highligt['acronym'],
-            index=st.session_state.highligt_ind,
-            key='y_select_s',
-            on_change=y_sess_update_select)
+        # ### SELECT BOX WITH ATLAS REGIONS
+        # option_highligt = st.selectbox(
+        #     'Current highlight region:',
+        #     df_highligt['acronym'],
+        #     index=st.session_state.highligt_ind,
+        #     key='y_select_s',
+        #     on_change=y_sess_update_select)
+        option_highligt = st.empty()
 
         ### MIP DRAWABLE CANVAS
         # st.write('Click images to select coordinate..')
@@ -220,6 +221,15 @@ with st.container():
                                   f'{st.session_state.x_val}; {st.session_state.y_val}; {st.session_state.z_val}',
                                   key="ste_coord_s",
                                   on_change=ste_coord_sess)
+
+
+        ### SELECT BOX WITH ATLAS REGIONS (top of col1a=
+        option_highligt = st.selectbox(
+            'Current highlight region:',
+            df_highligt['acronym'],
+            index=st.session_state.highligt_ind,
+            key='y_select_s',
+            on_change=y_sess_update_select)
 
 # Create a canvas component
 st.subheader(f'Current coordinate: {st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}')
