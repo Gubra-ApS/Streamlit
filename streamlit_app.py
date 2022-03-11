@@ -143,7 +143,7 @@ with st.container():
                         #     f'Center coords: ({row["center_x"]:.2f}, {row["center_y"]:.2f}). Radius: {row["radius"]:.2f}'
                         # )
                         if len(df) > st.session_state['cor_control_counter']:
-                            st.session_state.x_val = str(int((float(row["center_x"]) / 295 * 369))-22)
+                            st.session_state.x_val = str(int((float(row["center_x"]) / 295 * 369))-26)
                             st.session_state.z_val = str(int((float(row["center_y"]) / 215 * 268)))
 
                             if option_coronal == 'Annotations':
