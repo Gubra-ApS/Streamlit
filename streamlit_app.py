@@ -22,6 +22,11 @@ if 'mip_control_counter' not in st.session_state:
 if 'cor_control_counter' not in st.session_state:
     st.session_state['cor_control_counter'] = 0
 
+if 'highligt_ind' not in st.session_state:
+    st.session_state['highligt_ind'] = 0
+
+
+
 # lsfm
 if 'y_val' not in st.session_state:
     st.session_state['y_val'] = '200'
@@ -96,6 +101,7 @@ with st.container():
         option_highligt = st.selectbox(
             'Current highlight region:',
             df_highligt['acronym'],
+            index=st.session_state.highligt_ind,
             key='y_select_s',
             on_change=y_sess_update_select)
 
@@ -194,7 +200,7 @@ with st.container():
                         # )
                         if len(df) > st.session_state['cor_control_counter']:
                             if option_coronal == 'Annotations':
-                                st.session_state.y_select_s = 'NTS'
+                                st.session_state['highligt_ind'] = 10
 
                             st.session_state.x_val = str(int((float(row["center_x"]) / 246 * 369)))
                             st.session_state.z_val = str(int((float(row["center_y"]) / 179 * 268)))
