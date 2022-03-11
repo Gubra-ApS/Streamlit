@@ -89,7 +89,7 @@ def read_atlases(read):
 lsfm, mri, ccfv3, lsfm_ano = read_atlases(1)
 
 # read atlas region info
-df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
+df_highligt = pd.read_csv('ARA2_annotation_info.csv')
 
 
 # ##### BUILD APP
