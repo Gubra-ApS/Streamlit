@@ -148,7 +148,7 @@ with st.container():
 
                             if option_coronal == 'Annotations':
                                 temp_id = lsfm_ano[
-                                    int(268-float(st.session_state.z_val)-4), int(float(st.session_state.y_val))+30, int(
+                                    int(0-float(st.session_state.z_val)-4), int(float(st.session_state.y_val))+30, int(
                                         float(st.session_state.x_val))]
                                 st.write(int(float(st.session_state.x_val)))
                                 st.write(int(float(st.session_state.y_val))+30)
