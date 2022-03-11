@@ -152,7 +152,7 @@ with st.container():
                                         float(st.session_state.x_val))]
                                 st.write(int(float(st.session_state.x_val)))
                                 st.write(int(float(st.session_state.y_val))+30)
-                                st.write(int(268 - float(st.session_state.z_val) - 4))
+                                st.write(int(0 - float(st.session_state.z_val) - 4))
 
 
                                 st.write(temp_id)
