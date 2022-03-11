@@ -203,7 +203,9 @@ with st.container():
                             st.session_state.z_val = str(int((float(row["center_y"]) / 179 * 268)))
 
                             if option_coronal == 'Annotations':
-                                st.write(lsfm_ano[int(float(st.session_state.x_val)),int(float(st.session_state.y_val)),int(float(st.session_state.z_val))])
+                                temp_aibs_id = lsfm_ano[int(float(st.session_state.x_val)),int(float(st.session_state.y_val)),int(float(st.session_state.z_val))]
+                                temp = df_highligt[df_highligt['aibs_id']==temp_aibs_id]
+                                st.write(temp)
                                 #st.session_state['highligt_ind'] = lsfm_ano[int(float(st.session_state.x_val)),int(float(st.session_state.y_val)),int(float(st.session_state.z_val))]
 
                             st.session_state['cor_control_counter'] = len(df)
