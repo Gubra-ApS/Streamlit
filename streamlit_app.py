@@ -222,13 +222,6 @@ with st.container():
                                   key="ste_coord_s",
                                   on_change=ste_coord_sess)
 
-        # re-draw coordinate highligt select box
-        option_highligt = st.selectbox(
-            'Current highlight region:',
-            df_highligt['acronym'],
-            index=st.session_state.highligt_ind,
-            key='y_select_s_after',
-            on_change=y_sess_update_select)
 
 # Create a canvas component
 st.subheader(f'Current coordinate: {st.session_state.x_val}, {st.session_state.y_val}, {st.session_state.z_val}')
@@ -237,19 +230,19 @@ st.subheader(f'Current coordinate: {st.session_state.x_val}, {st.session_state.y
 #     unsafe_allow_html=True)
 # st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 #
-# col1, col2 = st.columns(2)
-# with col1:
-#     # plot LSFM
-#     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-#     im_ano = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
+col1, col2 = st.columns(2)
+with col1:
+    # plot LSFM
+    im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
+    im_ano = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
+
+    temp_id = df_highligt.iloc[st.session_state.highligt_ind,0]
+
+    im_ano[im_ano!=temp_id] = 0
+    im_ano[im_ano>0] = 100
+    im_lsfm_pil = helpers.im_plot_coord(im_lsfm, im_ano, st.session_state.x_val, st.session_state.z_val)
+    st.image(im_lsfm_pil)
 #
-#     temp_id = df_highligt.iloc[st.session_state.highligt_ind,0]
-#
-#     im_ano[im_ano!=temp_id] = 0
-#     im_ano[im_ano>0] = 100
-#     im_lsfm_pil = helpers.im_plot_coord(im_lsfm, im_ano, st.session_state.x_val, st.session_state.z_val)
-#     st.image(im_lsfm_pil)
-# #
 #     if st.button('Sync to LSFM'):
 #         # JPE calculations
 #         st.session_state.y_val_mri = st.session_state.y_val
