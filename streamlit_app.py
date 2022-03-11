@@ -207,6 +207,7 @@ with st.container():
                                 st.write(temp_id)
                                 temp = df_highligt[df_highligt['id']==temp_id]
                                 st.write(temp)
+                                st.write(temp.first_valid_index())
                                 # column = df["id"]
                                 # max_index = column.idxmax()
                                 # st.write(max_index)
