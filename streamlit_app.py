@@ -56,7 +56,7 @@ def y_sess_update():
     st.session_state.y_val = str(st.session_state.y_slider_s)
 
 def y_sess_update_select():
-    st.session_state['highligt_ind'] = option_highligt
+    st.session_state['highligt_ind'] = st.session_state.y_select_s
     # Change y_coord to region center
     # st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 340 * 512) - 20))
 
@@ -232,7 +232,7 @@ with col1:
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
     im_ano = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
 
-    temp_id = df_highligt.iloc[st.session_state['highligt_ind'],0]
+    temp_id = df_highligt.iloc[st.session_state['y_select_s'],0]
     st.write(temp_id)
 
     im_ano[im_ano!=temp_id] = 0
