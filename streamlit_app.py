@@ -56,7 +56,7 @@ def y_sess_update():
     st.session_state.y_val = str(st.session_state.y_slider_s)
 
 def y_sess_update_select():
-    a=1
+    st.session_state['highligt_ind'] = option_highligt
     # Change y_coord to region center
     # st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 340 * 512) - 20))
 
