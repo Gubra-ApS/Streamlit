@@ -94,7 +94,7 @@ df_highligt = pd.read_csv('ARA2_annotation_info_reduced_gubraview.csv')
 
 # ##### BUILD APP
 # st.session_state
-st.subheader(f'Coordinate viewer:')
+st.subheader(f'Coordinate picker:')
 with st.container():
     # Create a canvas component
     col1a, col2a = st.columns(2)
