@@ -120,3 +120,23 @@ def im_plot_coord(im, mask, x, y):
     # st.pyplot(fig)
 
     return pil_im
+
+
+def im_plot_coord_other(im, x, y):
+    # px = 1 / plt.rcParams['figure.dpi']
+    # fig = plt.figure(figsize=(int(455*px), int(297*px)))
+    #fig = plt.figure(figsize=(13.9, 10))
+    fig, ax = plt.subplots()
+    ax.imshow(im, cmap='gray')
+
+    rect = patches.Rectangle((int(float(x)), int(float(y))), 5, 5, linewidth=1, edgecolor='r', facecolor='r')
+    ax.add_patch(rect)
+
+    ax.axis('off')
+    fig.tight_layout()
+
+    pil_im = fig2img(fig)
+
+    # st.pyplot(fig)
+
+    return pil_im

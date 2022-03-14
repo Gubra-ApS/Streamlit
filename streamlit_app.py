@@ -263,27 +263,27 @@ with col1:
     im_ano[im_ano>0] = 100
     im_lsfm_pil = helpers.im_plot_coord(im_lsfm, im_ano, st.session_state.x_val, st.session_state.z_val)
     st.image(im_lsfm_pil)
-#
-#     if st.button('Sync to LSFM'):
-#         # JPE calculations
-#         st.session_state.y_val_mri = st.session_state.y_val
-#         st.session_state.x_val_mri = st.session_state.x_val
-#         st.session_state.z_val_mri = st.session_state.z_val
-#
-#         st.session_state.y_val_ccfv3 = st.session_state.y_val
-#         st.session_state.x_val_ccfv3 = st.session_state.x_val
-#         st.session_state.z_val_ccfv3 = st.session_state.z_val
-#
-# with col2:
-#     # plot MRI
-#     im_mri = np.copy(mri[:, int(float(st.session_state.y_val_mri))+30, :])
-#     im_mri_pil = helpers.im_plot_coord(im_mri, st.session_state.x_val_mri, st.session_state.z_val_mri)
-#     st.image(im_mri_pil)
-#
-#     # plot CCFv3
-#     im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val_ccfv3))+30, :])
-#     im_ccfv3_pil = helpers.im_plot_coord(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
-#     st.image(im_ccfv3_pil)
+
+    if st.button('Sync to LSFM'):
+        # JPE calculations
+        st.session_state.y_val_mri = st.session_state.y_val
+        st.session_state.x_val_mri = st.session_state.x_val
+        st.session_state.z_val_mri = st.session_state.z_val
+
+        st.session_state.y_val_ccfv3 = st.session_state.y_val
+        st.session_state.x_val_ccfv3 = st.session_state.x_val
+        st.session_state.z_val_ccfv3 = st.session_state.z_val
+
+with col2:
+    # plot MRI
+    im_mri = np.copy(mri[:, int(float(st.session_state.y_val_mri))+30, :])
+    im_mri_pil = helpers.im_plot_coord_other(im_mri, st.session_state.x_val_mri, st.session_state.z_val_mri)
+    st.image(im_mri_pil)
+
+    # plot CCFv3
+    im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val_ccfv3))+30, :])
+    im_ccfv3_pil = helpers.im_plot_coord_other(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
+    st.image(im_ccfv3_pil)
 
 
 
