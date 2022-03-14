@@ -75,7 +75,7 @@ def read_atlases(read):
     lsfm = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_temp.nii.gz'))
     lsfm = np.flip(lsfm, axis=0)
     lsfm_ano = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_ano_gubra.nii.gz'))
-    lsfm_ano = np.flip(lsfm_ano, axis=0)
+    #lsfm_ano = np.flip(lsfm_ano, axis=0)
 
     mri = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/MRI_space_oriented/mri_temp.nii.gz'))
     mri = np.flip(mri, axis=0)
@@ -112,6 +112,7 @@ with st.container():
             im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val)) + 30, :])
         else:
             im_click_pre = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
+            im_click_pre = np.flip(im_click_pre,0)
 
         im_click_pre = resize(im_click_pre, (215, 295))
         im_click = helpers.im_plot(im_click_pre)
@@ -147,9 +148,9 @@ with st.container():
                             st.session_state.z_val = str(int((float(row["center_y"]) / 215 * 268)))
 
                             if option_coronal == 'Annotations':
-                                im_ano_temp = np.copy(lsfm_ano)
-                                im_ano_temp = np.flip(im_ano_temp,0)
-                                temp_id = im_ano_temp[
+                                # im_ano_temp = np.copy(lsfm_ano)
+                                # im_ano_temp = np.flip(im_ano_temp,0)
+                                temp_id = lsfm_ano[
                                     int(268-float(st.session_state.z_val)-4), int(float(st.session_state.y_val))+30, int(
                                         float(st.session_state.x_val))]
                                 st.write(int(float(st.session_state.x_val)))
