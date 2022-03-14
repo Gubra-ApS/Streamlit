@@ -167,7 +167,8 @@ with st.container():
                             st.session_state['cor_control_counter'] = len(df)
 
         ### TEXT FIELD INPUT
-        ste_coord = st.text_input('Write: medial-lateral; anterior-posterior; dorsal-caudal:',
+        st.write('Write coordinate')
+        ste_coord = st.text_input('medial-lateral; anterior-posterior; dorsal-caudal:',
                                   f'{st.session_state.x_val}; {st.session_state.y_val}; {st.session_state.z_val}',
                                   key="ste_coord_s",
                                   on_change=ste_coord_sess)
