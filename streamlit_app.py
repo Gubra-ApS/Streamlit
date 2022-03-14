@@ -37,19 +37,19 @@ if 'z_val' not in st.session_state:
 
 # mri
 if 'y_val_mri' not in st.session_state:
-    st.session_state['y_val_mri'] = '200'
+    st.session_state['y_val_mri'] = '225'
 if 'x_val_mri' not in st.session_state:
-    st.session_state['x_val_mri'] = '60'
+    st.session_state['x_val_mri'] = '110'
 if 'z_val_mri' not in st.session_state:
-    st.session_state['z_val_mri'] = '80'
+    st.session_state['z_val_mri'] = '210'
 
 # ccfv3
 if 'y_val_ccfv3' not in st.session_state:
-    st.session_state['y_val_ccfv3'] = '200'
+    st.session_state['y_val_ccfv3'] = '225'
 if 'x_val_ccfv3' not in st.session_state:
-    st.session_state['x_val_ccfv3'] = '60'
+    st.session_state['x_val_ccfv3'] = '110'
 if 'z_val_ccfv3' not in st.session_state:
-    st.session_state['z_val_ccfv3'] = '80'
+    st.session_state['z_val_ccfv3'] = '210'
 
 def y_sess_update():
     #st.session_state.y_val = str(int((float(st.session_state.y_slider_s) / 340 * 512) - 20))
