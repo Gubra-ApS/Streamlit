@@ -250,7 +250,7 @@ st.subheader(f'Coordinate viewer: {st.session_state.x_val}, {st.session_state.y_
 #     unsafe_allow_html=True)
 # st.write('[' + st.session_state.x_val + ', ' + st.session_state.y_val + ', ' + st.session_state.z_val + ']')
 #
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 with col1:
     # plot LSFM
     im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+0, :])
@@ -280,6 +280,7 @@ with col2:
     im_mri_pil = helpers.im_plot_coord_other(im_mri, st.session_state.x_val_mri, st.session_state.z_val_mri)
     st.image(im_mri_pil)
 
+with col3:
     # plot CCFv3
     im_ccfv3 = np.copy(ccfv3[:, int(float(st.session_state.y_val_ccfv3))+30, :])
     im_ccfv3_pil = helpers.im_plot_coord_other(im_ccfv3, st.session_state.x_val_mri, st.session_state.z_val_mri)
