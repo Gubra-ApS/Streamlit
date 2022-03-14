@@ -109,9 +109,9 @@ with st.container():
 
         # template coronal
         if option_coronal == 'Template':
-            im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val)) + 30, :])
+            im_click_pre = np.copy(lsfm[:, int(float(st.session_state.y_val)) + 0, :])
         else:
-            im_click_pre = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
+            im_click_pre = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 0, :])
             im_click_pre = np.flip(im_click_pre,0)
 
         im_click_pre = resize(im_click_pre, (215, 295))
@@ -253,8 +253,8 @@ st.subheader(f'Coordinate viewer: {st.session_state.x_val}, {st.session_state.y_
 col1, col2 = st.columns(2)
 with col1:
     # plot LSFM
-    im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+30, :])
-    im_ano = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 30, :])
+    im_lsfm = np.copy(lsfm[:, int(float(st.session_state.y_val))+0, :])
+    im_ano = np.copy(lsfm_ano[:, int(float(st.session_state.y_val)) + 0, :])
     im_ano = np.flip(im_ano,0)
 
     temp_id_hl = df_highligt.iloc[st.session_state.highligt_ind,0]
