@@ -78,7 +78,7 @@ def im_plot_coord(im, mask, x, y):
     fig, ax = plt.subplots()
     ax.imshow(im, cmap='gray')
 
-    rect = patches.Rectangle((int(float(x)), int(float(y))), 5, 5, linewidth=1, edgecolor='g', facecolor='g')
+    rect = patches.Rectangle((int(float(x)), int(float(y))), 5, 5, linewidth=1, edgecolor='r', facecolor='r')
     ax.add_patch(rect)
 
     ######## add region outline
@@ -108,7 +108,7 @@ def im_plot_coord(im, mask, x, y):
 
     # and now do the plotting if any contour lines are found
     if len(segments) > 0:
-        ax.plot(segments[:, 0] - 0.5, segments[:, 1] - 0.5, color='red', linewidth=1, linestyle='solid')
+        ax.plot(segments[:, 0] - 0.5, segments[:, 1] - 0.5, color='#00FFFF', linewidth=1, linestyle='solid')
 
     #################
 
