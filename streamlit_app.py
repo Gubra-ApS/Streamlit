@@ -29,11 +29,11 @@ if 'highligt_ind' not in st.session_state:
 
 # lsfm
 if 'y_val' not in st.session_state:
-    st.session_state['y_val'] = '200'
+    st.session_state['y_val'] = '225'
 if 'x_val' not in st.session_state:
-    st.session_state['x_val'] = '60'
+    st.session_state['x_val'] = '110'
 if 'z_val' not in st.session_state:
-    st.session_state['z_val'] = '80'
+    st.session_state['z_val'] = '210'
 
 # mri
 if 'y_val_mri' not in st.session_state:
