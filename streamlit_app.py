@@ -77,7 +77,7 @@ def read_atlases(read):
     lsfm = np.flip(lsfm, axis=0)
     lsfm_ano = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_ano_gubra.nii.gz'))
     #lsfm_ano = np.flip(lsfm_ano, axis=0)
-    ls_coords = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/lsfm_coords_all.nii.gz'))
+    ls_coords = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_coords_all.nii.gz'))
     lsfm_hem_mask = np.zeros(lsfm.shape)
     lsfm_hem_mask[:, :, :185] = 1
 
