@@ -6,6 +6,7 @@ from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 from skimage.transform import resize, downscale_local_mean
 import helpers
+import helpers_coords
 
 ##### CSS STYLING
 def local_css(file_name):
@@ -76,9 +77,14 @@ def read_atlases(read):
     lsfm = np.flip(lsfm, axis=0)
     lsfm_ano = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/LSFM_space_oriented/lsfm_ano_gubra.nii.gz'))
     #lsfm_ano = np.flip(lsfm_ano, axis=0)
+    ls_coords = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/lsfm_coords_all.nii.gz'))
+    lsfm_hem_mask = np.zeros(lsfm.shape)
+    lsfm_hem_mask[:, :, :185] = 1
 
     mri = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/MRI_space_oriented/mri_temp.nii.gz'))
     mri = np.flip(mri, axis=0)
+
+
     ccfv3 = sitk.GetArrayFromImage(sitk.ReadImage('atlas_data/AIBS_CCFv3_space_oriented/ccfv3_temp.nii.gz'))
     ccfv3[ccfv3>255] = 255
     ccfv3 = np.flip(ccfv3, axis=0)
